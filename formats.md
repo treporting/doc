@@ -88,9 +88,10 @@ stands; then they become a part of it, and a CI check in storage-edgedb compares
 
 ### Software requirements
 
-- a software requirement states **one behaviour** of its subsystem at its interface that a test
-  can verify; a route or a view is where it shows, not how it is cut - "GET /api/v1/trace marks
-  a missing link as gap"
+- a software requirement states **one behaviour** of its subsystem that a test can verify - "the
+  trace marks a missing link as gap"
+- it names no route and no view: where a behaviour shows - a route, its contract - is set by the
+  architecture, at most
 - it names as a rule **one** system requirement as uplink; several only where the behaviour
   serves each of them
 - every subsystem repo is an element of its own in the architecture, so that the CI can check
