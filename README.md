@@ -1,4 +1,4 @@
-# doc
+# treporting
 
 User needs, requirements, architecture and the way of working of
 [treporting](https://github.com/treporting) - a tool that reports traceability and maturity
@@ -10,6 +10,7 @@ from the systems a project keeps its work in, and only reads them.
 |---|---|---|
 | [harness.md](harness.md) | how we work: the process we follow (ISO/IEC/IEEE 12207, 29119), our levels, the rules of our work, the loops for every change and every release | `PROC-nn` |
 | [definitions.md](definitions.md) | the terms: system, item, content, work product, release, library, baseline, traceability | - |
+| [formats.md](formats.md) | how requirements, annotations and tests are written down, and what the CI checks; the schemas in [schemas/](schemas/) | - |
 | [standards.md](standards.md) | the process, safety and security standards per domain | - |
 | [requirements/user-needs.md](requirements/user-needs.md) | what each role needs, without a solution (r1) | `UN-<role>-nn` |
 | [requirements/regulatory-requirements.md](requirements/regulatory-requirements.md) | what standards and laws ask | `REG-nn` |

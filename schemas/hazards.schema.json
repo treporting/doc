@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/treporting/treporting/schemas/hazards.schema.json",
+  "title": "Hazards (h1) and their controls (h2)",
+  "description": "Draft until the gel schema stands (treporting/storage-edgedb#3); field names are the properties of the gel schema.",
+  "type": "object",
+  "required": [
+    "level",
+    "hazards"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "level": {
+      "const": "h1"
+    },
+    "hazards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "object_key",
+          "object_text",
+          "cause",
+          "effect"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "object_key": {
+            "type": "string",
+            "pattern": "^HAZ-[0-9]{2}$"
+          },
+          "object_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cause": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effect": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "controls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "object_key",
+          "object_text",
+          "target_ids",
+          "controls"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "object_key": {
+            "type": "string",
+            "pattern": "^HAZC-[0-9]{2}$"
+          },
+          "object_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^HAZ-[0-9]{2}$"
+            },
+            "minItems": 1
+          },
+          "controls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^UN-[A-Z]+-[0-9]{2}$"
+            },
+            "minItems": 1
+          }
+        }
+      }
+    }
+  }
+}

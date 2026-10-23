@@ -22,7 +22,9 @@ The terms - system, item, content, work product, release, library, baseline - ar
 Process of [harness.md](../harness.md); this file is r3, the architecture definition of
 ISO/IEC/IEEE 12207, 6.4.4.
 
-The ids are `ARC-nn`. The format of this file is preliminary until #6 defines it.
+The ids are `ARC-nn` for the subsystems and interfaces, `ARC-Rnn` for the rationale and
+`ARC-Dnn` for the decisions; a requirement that a decision made possible names it as its
+uplink. The format of this file is preliminary until #6 defines it.
 
 ## Overview
 
@@ -88,7 +90,7 @@ flowchart LR
 
 The principles every decision below follows.
 
-### Read only
+### ARC-R01 Read only
 
 treporting only reads the data of its users. It never writes into a source system
 and never holds data that a user enters into treporting itself. What it writes are records of
@@ -110,7 +112,7 @@ the maxim, and bring a way of working, an audit trail of entries and a second tr
 
 ## Decisions
 
-### Independent count (SYS-23)
+### ARC-D01 Independent count (SYS-23)
 
 **Decision**: the source is counted by a query of its own (ARC-14), in the extractor of the system
 but in code apart from the reader, and the stored count is taken from the storage after the import. A reader never
@@ -135,7 +137,7 @@ an assessor asks for it, rather than run on every import.
 
 **Rejected**: the reader counting for itself - cheap, but it misses exactly the faults above.
 
-### Import record (SYS-26, SYS-41)
+### ARC-D02 Import record (SYS-26, SYS-41)
 
 **Decision**: the import of the storage brings the four counts together - the count of the
 source from the extractor of the system, read and refused from extractor-content or
@@ -162,7 +164,7 @@ import 2026-10-23T14:02:11Z  by m.fischer
 revision (REG-10), it is the audit trail of a change of data (REG-05), and it is the evidence that
 errors of an import are detected (REG-01 to REG-03).
 
-### Original and derived values (SYS-11)
+### ARC-D03 Original and derived values (SYS-11)
 
 **Decision**: the storage always keeps the original as read from the source. A value derived at
 the import is never the original and is kept beside it under a name of its own, with a
@@ -192,7 +194,7 @@ checked for plausibility - the reporter finds an original `Safety = 'QM'` under 
 - the storage derives them in a view of the database. It binds the rule to the database, and the
   data file (SYS-21) would need the rule a second time.
 
-### Configuration instead of code for the customer (SYS-22)
+### ARC-D04 Configuration instead of code for the customer (SYS-22)
 
 **Decision**: what differs from customer to customer - the customized attributes of an
 attribute-based system and the values to be mapped - is a configuration file, read by one
@@ -210,7 +212,7 @@ configuration stays with the customer; the mechanism stays public and is tested 
 **Rejected**: a converter in code per system - the proprietary formats would be in code, and the
 same mechanics would be written once per system.
 
-### Identity (SYS-39) - provisional, confirmed or changed by #22
+### ARC-D05 Identity (SYS-39) - provisional, confirmed or changed by #22
 
 **Decision**: treporting keeps no users and no passwords of its own. It takes the identity from
 what the organization already has: preferably from a proxy in front of it that authenticates the

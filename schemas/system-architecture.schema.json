@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/treporting/treporting/schemas/system-architecture.schema.json",
+  "title": "System architecture (r3) with the allocation (r4)",
+  "description": "Draft until the gel schema stands (treporting/storage-edgedb#3); field names are the properties of the gel schema.",
+  "type": "object",
+  "required": [
+    "level",
+    "elements"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "level": {
+      "const": "r3"
+    },
+    "elements": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "object_key",
+              "object_text",
+              "kind",
+              "repo"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "object_key": {
+                "type": "string",
+                "pattern": "^ARC-0[0-9]$"
+              },
+              "object_text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "const": "subsystem"
+              },
+              "repo": {
+                "type": "string",
+                "minLength": 1
+              },
+              "allocated": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^SYS-[0-9]{2}$"
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "object_key",
+              "object_text",
+              "kind",
+              "between"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "object_key": {
+                "type": "string",
+                "pattern": "^ARC-[1-9][0-9]$"
+              },
+              "object_text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "const": "interface"
+              },
+              "between": {
+                "type": "string",
+                "minLength": 1
+              },
+              "contract": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "object_key",
+          "object_text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "object_key": {
+            "type": "string",
+            "pattern": "^ARC-[RD][0-9]{2}$"
+          },
+          "object_text": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

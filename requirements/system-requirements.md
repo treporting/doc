@@ -2,7 +2,7 @@
 
 What treporting has to do, seen as one box - viewer, reporter and storage together. Each
 requirement names the user needs (r1) and the regulatory requirements (`regulatory-requirements.md`)
-it comes from - or the decision of the architecture that made it possible -, and every need and
+it comes from - or the decision of the architecture that made it possible (`ARC-Dnn`) -, and every need and
 every regulatory requirement that treporting realizes has at least one requirement. How the
 system does it is left to the architecture (r3).
 
@@ -234,7 +234,7 @@ meant to be licensed must not be published under Apache-2.0 before, or it stays 
 | Id | The system shall | From |
 |---|---|---|
 | SYS-68 | keep every value as read from its source, and keep a value it derives beside it under a name of its own - `M` for mapped, `I` for inherited -, and say on every view which of the two it shows | UN-PSF-05, UN-SAF-03, REG-10 |
-| SYS-69 | make the derived values of a stored data set again on request when a rule changes, back in time, without fetching the data from the source systems again | architecture: original and derived values |
+| SYS-69 | make the derived values of a stored data set again on request when a rule changes, back in time, without fetching the data from the source systems again | ARC-D03 |
 
 ## Plausibility
 

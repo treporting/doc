@@ -1,0 +1,147 @@
+# Formats
+
+How requirements, architecture, risks, annotations and tests are written down, so that people
+can review them in a pull request and a program can read them - the CI check and treporting
+itself (#9). Decided in #6.
+
+## Requirements: YAML for the data, Markdown for the explanations
+
+Every level is kept as data in a YAML file; text that explains - reasons, examples, the chain of
+maturity, introductions - stays in Markdown beside it and refers to the YAML.
+
+| Level | Data | Explanation | Repo |
+|---|---|---|---|
+| h1, h2 | `safety/hazards.yaml` (HAZ, HAZC); threats (THR, THRC) by #22 | `safety/hazard-and-risk-analysis.md` | treporting |
+| n1 | `requirements/regulatory-requirements.yaml` (REG) | `requirements/regulatory-requirements.md` | treporting |
+| r1 | `requirements/user-needs.yaml` (UN) | `requirements/user-needs.md` | treporting |
+| r2 | `requirements/system-requirements.yaml` (SYS) | `requirements/system-requirements.md` | treporting |
+| r3, r4 | `architecture/system-architecture.yaml` (ARC, with the allocation) | `architecture/system-architecture.md` | treporting |
+| r5 | `requirements/software-requirements.yaml` (SR) | `requirements/software-requirements.md` | the repo of the subsystem |
+
+A readable Markdown view of the YAML is generated on request only.
+
+### Fields are the properties of the gel schema
+
+The fields of the YAML carry the names of the properties of the gel schema of the model
+(treporting/storage-edgedb#3), so that our own data needs no configuration to be read. The YAML
+holds only what the author writes:
+
+| Kind of field | Examples | Where it comes from | In the YAML |
+|---|---|---|---|
+| content | `object_key`, `object_text`, `level`, `function`, `feature`, `component`, `priority`, `safety`, `status`, the uplink | the author | yes |
+| context | `organization`, `project`, `baseline`, `library`, `system`, `module_id`, `revision` | the extractor: repo, file, commit, tag | no |
+| derived | `ifeature`, `ifunction`, `ipriority`, `isafety`, `mstatus`, `assignedTo`, `unit` | the import | never |
+
+- **function** is the role of a user need (PM, RM, ..., PSF); a requirement below inherits it.
+- **feature** is given on r2 and inherited by r5.
+- **priority** is `later` where a requirement is kept for later; empty otherwise.
+- **the uplink** names the parents: a child names what it is derived from. Its property name is
+  settled with the gel schema (`target_ids` until then).
+
+### Example
+
+```yaml
+# requirements/system-requirements.yaml
+level: r2
+requirements:
+  - object_key: SYS-58
+    feature: Licensing
+    object_text: >-
+      check, on every request to a licensed feature, the role and the rights of the user and
+      the licence of the installation, and refuse the request with the reason when one of
+      them is missing
+    target_ids: [UN-OPS-10]
+    priority: later
+```
+
+### Schemas
+
+One JSON Schema per kind of file, in [schemas/](schemas/). They are drafts until the gel schema
+stands; then they become a part of it, and a CI check in storage-edgedb compares both.
+
+## Breakdown
+
+| Level | treporting | Example | Set by |
+|---|---|---|---|
+| system | treporting | - | r2 |
+| subsystem | a repo, ARC-01 to ARC-06 | reporter-edgedb | r3 |
+| component | a group of packages with one responsibility | `trace`, `maturity` | the field `component` of an SR |
+| module | a Go package or JS module | `trace/gaps` | the code |
+| unit | a source file | `trace/gaps/mark.go` | the annotation, never by hand |
+| function | a function or method | `markGaps()` | the place of the annotation |
+
+## Ids
+
+| Ids | What | Level |
+|---|---|---|
+| `HAZ-nn`, `THR-nn` | hazards, threats | h1 |
+| `HAZC-nn`, `THRC-nn` | the controls of a hazard, of a threat | h2 |
+| `REG-nn` | regulatory requirements | n1 |
+| `UN-<role>-nn` | user needs | r1 |
+| `SYS-nn` | system requirements | r2 |
+| `ARC-nn` | subsystems, interfaces | r3 |
+| `ARC-Rnn`, `ARC-Dnn` | rationale and decisions of the architecture; a requirement a decision made possible names it as uplink | r3 |
+| `SR-<code>-nn` | software requirements: VIE, REP, STO, CON, EXC, and EX with the system for an extractor (EXGIT, EXCB, ...) | r5 |
+| `PROC-nn` | rules of our work | - |
+
+## Annotations
+
+The same in Go and JavaScript, in the comment right above the function, method, component or
+test, with no blank line between:
+
+```go
+// @implements SR-REP-02, SR-REP-03
+func markGaps(trace *Trace) { ... }
+
+// @verifies SR-REP-02
+func TestMarkGapsNeverCovered(t *testing.T) { ... }
+```
+
+```js
+/** @implements SR-VIE-05 */
+export function StatusBand(props) { ... }
+
+// @verifies SR-VIE-05
+it('shows the hidden filters', () => { ... })
+```
+
+- one annotation per line, several ids separated by commas; never over two lines
+- `@implements` names software requirements of its own repo only
+- `@verifies` names software requirements of its own repo in a software test, system
+  requirements in a system test
+
+## Test levels
+
+The level of a test follows from where its file lies (see the test levels in
+[harness.md](harness.md)):
+
+| Level | Where | Repo |
+|---|---|---|
+| MT | `*_test.go` in the package, `*.test.js` | the subsystem |
+| SwIT | `*_test.go` with the build tag `integration`, `*.integration.test.js` | the subsystem |
+| SwVal | `subsystemtest/` | the subsystem |
+| SysIT | `systemtest/integration/` | treporting |
+| SysQT | `systemtest/system/` | treporting |
+| Val | `systemtest/acceptance/` | treporting |
+
+The containers are built in `deploy/` of this repo from the parts the subsystems deliver - the
+reporter and the viewer in one image. A test result is linked to its test case by package and
+function name, from the JSON output of `go test` and of vitest.
+
+## CI check
+
+On every pull request of a code repo:
+
+1. the YAML of the requirements matches its schema
+2. every id in `@implements` and `@verifies` exists in the YAML of the **base commit** of the
+   pull request - a requirement added in the same pull request does not count (PROC-05); a SYS
+   named by a system test must exist in treporting on `main`
+3. the number of annotations the parser found equals the count of `git grep -c`
+4. the uplink of every SR: the SYS it names exists in treporting on `main` and is allocated to
+   this subsystem in the architecture (r4)
+5. every test file belongs to exactly one test level
+
+In this repo: the schemas, the references both ways, and every SYS allocated.
+
+The checking program lives in extractor-content, beside the parser of the annotations; the
+workflow is a reusable workflow in `treporting/.github`.
