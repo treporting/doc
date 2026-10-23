@@ -1,8 +1,8 @@
 # System requirements (r2)
 
 What treporting has to do, seen as one box - viewer, reporter and storage together. Each
-requirement names the user needs (r1) it comes from, and every need has at least one
-requirement. How the system does it is left to the architecture (r3).
+requirement names the user needs (r1) it comes from - or, where no need stands above it, the
+constraint it follows - and every need has at least one requirement. How the system does it is left to the architecture (r3).
 
 The ids are `SYS-nn`. The format of this file is preliminary until #6 defines it.
 
@@ -60,50 +60,78 @@ needs it comes from - the roles of `user-needs.md` - and the feature of its sect
 | SYS-20 | hold several data sets apart - generated data and data read in, each baseline on its own - and answer each request from exactly one of them | UN-OPS-03 |
 | SYS-21 | answer from a data file when no database server can be reached | UN-OPS-01 |
 | SYS-22 | read the data of different tools into one model, and name every object it could not read, with the reason | UN-OPS-02, UN-PSF-04 |
-| SYS-23 | compare, for every import, the number of objects of each kind read with the number in the source, and name every difference | UN-PSF-01, UN-PSF-04 |
+
+## Integrity
+
+treporting controls nothing, but it can fail to show a gap (tool impact TI2 in ISO 26262-8,
+clause 11). Whether it has to be qualified depends on how surely its own errors are detected: with
+high confidence (TD1) the tool confidence level is TCL1 and no qualification is needed. IEC 61508
+(class T2) and DO-330 argue alike. The requirements of this feature are what makes errors of an
+import detectable.
+
+The check has to be independent of the reading: a converter that counts what it reads shares every
+error of the reading with its count. So the source is counted by a way of its own, and the storage
+is counted after the import, not by the converter. Four levels together give the evidence:
+
+| Level | What | Finds |
+|---|---|---|
+| A. reconciliation at every import | count at four points - in the source by a query of its own (the object count of a DOORS module, the total of a codebeamer query, a `git grep` for `@implements`), read, refused with a reason, stored; source = read + refused, read = stored; per kind of object, per type of link, per state | missing objects, missing links, states counted wrong |
+| B. content check | a fingerprint of the fields that matter, per object, on the side of the source and on the side of the storage | attributes swapped, links to the wrong object, an unknown value turned into zero or empty |
+| C. known-answer test per release | data sets of known content, with faults built in - missing objects, missing links, unknown values, spellings that differ; every fault has to be reported | that the checks find what they are for - the evidence for TD1 |
+| D. reference edgedb (#9) | treporting reads its own repos; the expected counts come independently from git | real data instead of generated |
+
+Equal counts do not prove the content right - that is level B. That the checks find anything at all
+is shown by level C only.
+
+| Id | The system shall | From |
+|---|---|---|
+| SYS-23 | count at every import, per kind of object, per type of link and per state, at four points - in the source by a query of its own, read, refused, and stored, counted from the storage afterwards - and name every difference | UN-PSF-01, UN-PSF-04 |
 | SYS-24 | build the same data set from the same source on every import | UN-PSF-06 |
+| SYS-25 | compare at every import a fingerprint of the fields that matter of each object in the source with the same object as stored, and name every object that differs | UN-PSF-01, UN-PSF-02 |
+| SYS-26 | mark a data set whose import showed a difference as incomplete, on every view and in every report that answers from it | UN-PSF-02, UN-PSF-04 |
+| SYS-27 | report, in every release, every fault built into a data set of known content - a missing object, a missing link, an unknown value, a spelling that differs | constraint (tool qualification: ISO 26262-8 clause 11, IEC 61508-3 7.4.4, DO-330) |
 
 ## Errors
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-25 | show a value that is unknown as unknown, distinct from zero, empty or passed | UN-PSF-02 |
-| SYS-26 | refuse a request it cannot answer, with the reason, rather than answer it empty | UN-PSF-02, UN-PSF-04 |
-| SYS-27 | say for every figure what it counts, and count in a chart exactly what the table beside it shows | UN-PSF-05 |
+| SYS-28 | show a value that is unknown as unknown, distinct from zero, empty or passed | UN-PSF-02 |
+| SYS-29 | refuse a request it cannot answer, with the reason, rather than answer it empty | UN-PSF-02, UN-PSF-04 |
+| SYS-30 | say for every figure what it counts, and count in a chart exactly what the table beside it shows | UN-PSF-05 |
 
 ## Export
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-28 | export every table in a machine-readable format and every chart as a picture | UN-RM-04, UN-ASR-06 |
-| SYS-29 | export complete records with their history, readable by people and by machines | UN-ASR-06 |
+| SYS-31 | export every table in a machine-readable format and every chart as a picture | UN-RM-04, UN-ASR-06 |
+| SYS-32 | export complete records with their history, readable by people and by machines | UN-ASR-06 |
 
 ## Usability
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-30 | say on the first screen what it does and where to start, and lead back there from any view | UN-ALL-01 |
-| SYS-31 | show while a view is loading, or while the data is not there yet, that it is, and fill the view by itself when the data arrives | UN-ALL-02 |
+| SYS-33 | say on the first screen what it does and where to start, and lead back there from any view | UN-ALL-01 |
+| SYS-34 | show while a view is loading, or while the data is not there yet, that it is, and fill the view by itself when the data arrives | UN-ALL-02 |
 
 ## Operation
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-32 | be installed and started from a release by following its operator manual alone | UN-OPS-04 |
-| SYS-33 | keep the data unchanged when moved to a new version, and say before the move which data the new version cannot read | UN-OPS-05 |
-| SYS-34 | tell the user when it, or a part of it, is not available, and why | UN-OPS-06 |
-| SYS-35 | record its errors and warnings with time and cause | UN-OPS-07 |
+| SYS-35 | be installed and started from a release by following its operator manual alone | UN-OPS-04 |
+| SYS-36 | keep the data unchanged when moved to a new version, and say before the move which data the new version cannot read | UN-OPS-05 |
+| SYS-37 | tell the user when it, or a part of it, is not available, and why | UN-OPS-06 |
+| SYS-38 | record its errors and warnings with time and cause | UN-OPS-07 |
 
 ## Audit
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-36 | authenticate every user by an identity of their own, and grant access by role | UN-OPS-08 |
-| SYS-37 | record for every report who produced it, when, from which data set and revision, and with which parameters | UN-ASR-04 |
-| SYS-38 | record every import and change of data - who, when, what - and keep the state before it | UN-ASR-05 |
-| SYS-39 | keep the records and their audit trail for a set period, readable throughout | UN-OPS-09 |
-| SYS-40 | record an approval of a release with the approver, the time, its meaning and a fingerprint of what was approved, and never change an approval afterwards | UN-RM-05 |
-| SYS-41 | use the record of what users did only for the purposes set, delete it after the period set, and show it only to the roles allowed to see it | UN-ALL-04 |
+| SYS-39 | authenticate every user by an identity of their own, and grant access by role | UN-OPS-08 |
+| SYS-40 | record for every report who produced it, when, from which data set and revision, and with which parameters | UN-ASR-04 |
+| SYS-41 | record every import and change of data - who, when, what - and keep the state before it | UN-ASR-05 |
+| SYS-42 | keep the records and their audit trail for a set period, readable throughout | UN-OPS-09 |
+| SYS-43 | record an approval of a release with the approver, the time, its meaning and a fingerprint of what was approved, and never change an approval afterwards | UN-RM-05 |
+| SYS-44 | use the record of what users did only for the purposes set, delete it after the period set, and show it only to the roles allowed to see it | UN-ALL-04 |
 
 ## Maturity
 
@@ -134,20 +162,20 @@ so that 100 % can always be reached.
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-42 | give the maturity of a requirement as the share of the steps of the longest chain it has reached | UN-RM-02, UN-QA-02 |
-| SYS-43 | give the maturity of each group - RG-SYS-R, RG-SW-R, RG-SC, RG-OC, RG-SW-TC, RG-SW-TR, RG-SYS-TC, RG-SYS-TR - as the share of the steps of that group reached | UN-RM-02, UN-QA-02 |
-| SYS-44 | count a test result as reached only when it passed | UN-PSF-05 |
-| SYS-45 | count a step as reached only when every branch below the requirement reaches it | UN-PSF-01 |
-| SYS-46 | take the longest chain from the process reference model in use and the coverage levels coded for source code and object code - ASPICE with one level each, 20 steps, when none is chosen - and leave out every step whose level holds no object in the release; every report states the chain it used and the steps it left out | UN-QA-04, UN-ASR-03, UN-PSF-05, UN-ASR-02 |
-| SYS-47 | give the maturity of a level, a feature or a release as the mean of the maturity of its requirements | UN-RM-02, UN-QA-02 |
+| SYS-45 | give the maturity of a requirement as the share of the steps of the longest chain it has reached | UN-RM-02, UN-QA-02 |
+| SYS-46 | give the maturity of each group - RG-SYS-R, RG-SW-R, RG-SC, RG-OC, RG-SW-TC, RG-SW-TR, RG-SYS-TC, RG-SYS-TR - as the share of the steps of that group reached | UN-RM-02, UN-QA-02 |
+| SYS-47 | count a test result as reached only when it passed | UN-PSF-05 |
+| SYS-48 | count a step as reached only when every branch below the requirement reaches it | UN-PSF-01 |
+| SYS-49 | take the longest chain from the process reference model in use and the coverage levels coded for source code and object code - ASPICE with one level each, 20 steps, when none is chosen - and leave out every step whose level holds no object in the release; every report states the chain it used and the steps it left out | UN-QA-04, UN-ASR-03, UN-PSF-05, UN-ASR-02 |
+| SYS-50 | give the maturity of a level, a feature or a release as the mean of the maturity of its requirements | UN-RM-02, UN-QA-02 |
 
 ## Constraints
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-48 | carry a legal notice and a privacy notice on every page reachable from the internet | constraint (German law) |
+| SYS-51 | carry a legal notice and a privacy notice on every page reachable from the internet | constraint (German law) |
 
 ## Open
 
-- **Approval**: whether a signed git tag fulfils SYS-40 is decided by the architecture (#4).
+- **Approval**: whether a signed git tag fulfils SYS-43 is decided by the architecture (#4).
 - **Figures**: no requirement names a time, a size or an availability yet.
