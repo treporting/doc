@@ -2,7 +2,7 @@
 
 What standards and laws ask of treporting. They stand beside the user needs (r1): they do not come
 from a role, and they hold whether a user asks for them or not. The system requirements (r2) are
-derived from both, and every regulatory requirement has at least one system requirement.
+derived from both, and every regulatory requirement that treporting realizes has at least one system requirement; one it does not realize says why.
 
 The ids are `REG-nn`. The format of this file is preliminary until #6 defines it.
 
@@ -29,8 +29,8 @@ release.
 | REG-06 | 21 CFR 11.10(d), (g) | let only authorised people use the system, and check their authority for what they do | medical (FDA) | SYS-39 |
 | REG-07 | 21 CFR 11.10(b) | produce accurate and complete copies of records, readable by people and in electronic form | medical (FDA) | SYS-32 |
 | REG-08 | 21 CFR 11.10(c) | protect records so that they can be retrieved accurately throughout their retention period | medical (FDA) | SYS-42 |
-| REG-09 | 21 CFR 11.50, 11.70 | an electronic signature shows the name of the signer, the time and its meaning, and is bound to its record so that it cannot be moved to another | medical (FDA) | SYS-43 |
-| REG-10 | FDA, data integrity (ALCOA) | data are attributable, legible, contemporaneous, original and accurate - every figure can be followed back to whom and what it comes from | medical (FDA) | SYS-18, SYS-40, SYS-41 |
+| REG-09 | 21 CFR 11.50, 11.70 | an electronic signature shows the name of the signer, the time and its meaning, and is bound to its record so that it cannot be moved to another | medical (FDA) | not realized: treporting signs nothing; an approval is made where the organization makes it, and can name the report it relied on (SYS-43) |
+| REG-10 | FDA, data integrity (ALCOA) | data are attributable, legible, contemporaneous, original and accurate - every figure can be followed back to whom and what it comes from | medical (FDA) | SYS-18, SYS-40, SYS-41, SYS-43 |
 
 ## Personal data and legal notice
 

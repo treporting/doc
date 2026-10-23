@@ -2,7 +2,7 @@
 
 What treporting has to do, seen as one box - viewer, reporter and storage together. Each
 requirement names the user needs (r1) and the regulatory requirements (`regulatory-requirements.md`)
-it comes from, and every need and every regulatory requirement has at least one requirement. How
+it comes from, and every need and every regulatory requirement that treporting realizes has at least one requirement. How
 the system does it is left to the architecture (r3).
 
 The ids are `SYS-nn`. The format of this file is preliminary until #6 defines it.
@@ -131,7 +131,7 @@ is shown by level C only.
 | SYS-40 | record for every report who produced it, when, from which data set and revision, and with which parameters | UN-ASR-04, REG-05, REG-10 |
 | SYS-41 | record every import and change of data - who, when, what - and keep the state before it; the record of an import holds the source and its revision, the time, who started it, the version of the converter, the counts at the four points of SYS-23, the objects refused with their reason, the result of the fingerprints of SYS-25 and the state of SYS-26 | UN-ASR-05, REG-05, REG-10 |
 | SYS-42 | keep the records and their audit trail for a set period, readable throughout | UN-OPS-09, REG-08 |
-| SYS-43 | record an approval of a release with the approver, the time, its meaning and a fingerprint of what was approved, and never change an approval afterwards | UN-RM-05, REG-09 |
+| SYS-43 | give every report an identity of its own and a fingerprint of the data it was made from, so that a decision taken elsewhere - such as the approval of a release - can name the report it relied on | UN-RM-05, REG-10 |
 | SYS-44 | use the record of what users did only for the purposes set, delete it after the period set, and show it only to the roles allowed to see it | UN-ALL-04, REG-11, REG-12 |
 
 ## Maturity
@@ -201,5 +201,4 @@ The sizes of a data set:
 
 ## Open
 
-- **Approval**: whether a signed git tag fulfils SYS-43 is decided by the architecture (#4).
 - **Figures**: the measured and the target figures in the tables of [Performance](#performance) (#16).
