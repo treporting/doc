@@ -19,6 +19,9 @@ to the process does not count into the maturity of the product.
 | PROC-05 | A requirement is merged before any code names it in `@implements`. |
 | PROC-06 | A baseline is a signed tag: in doc it is a release, in any other repo a library. |
 | PROC-07 | Every release and every library writes its data into the reference edgedb. |
+| PROC-08 | Every release has an SBOM, and the licences of its components are checked against Apache-2.0 (REG-15, REG-18). |
+| PROC-09 | A reported vulnerability is assessed and fixed without delay; one that is actively exploited is notified within 24 hours (REG-15, REG-16). |
+| PROC-10 | Every release gets security fixes over the support period it states (REG-17). |
 
 ## Loop for every code change
 
@@ -40,9 +43,10 @@ to the process does not count into the maturity of the product.
    - test coverage
    - structural debt
    - requirements
-6. provide feedback
-7. create a signed tag as approval (PROC-06)
-8. write the data of the release or library into a separate edgedb, kept as reference
+6. create the SBOM and check the licences of the components (PROC-08)
+7. provide feedback
+8. create a signed tag as approval (PROC-06)
+9. write the data of the release or library into a separate edgedb, kept as reference
    data - the real data of treporting itself, used instead of synthetic data to show that
    it works in practice (PROC-07)
 

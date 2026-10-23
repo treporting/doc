@@ -86,6 +86,20 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 | UN-OPS-07 | Finds the cause of a failure from what it recorded. |
 | UN-OPS-08 | Gives access only to authorised people, each known by an identity of their own. |
 | UN-OPS-09 | Keeps the records and their history for a set period, readable throughout. |
+| UN-OPS-10 | Knows which features an installation is licensed for, and uses only those (priority later). |
+| UN-OPS-11 | Gets the security fixes for the version in use, over a period known in advance. |
+| UN-OPS-12 | Knows which components, at which version and under which licence, a release is made of. |
+| UN-OPS-13 | Reports a vulnerability, and learns how it is handled. |
+
+## Configurator - CFG
+
+Whoever sets treporting up for the systems of a customer.
+
+| Id | Need |
+|---|---|
+| UN-CFG-01 | Maps the attributes and values of a customer's system by configuration, and by code of the customer only where a configuration cannot say it - without changing the core. |
+| UN-CFG-02 | Checks a configuration against the data of the system before it is used. |
+| UN-CFG-03 | Keeps the configurations and catalogues of each customer apart from the others and from the product. |
 
 ## All roles - ALL
 
