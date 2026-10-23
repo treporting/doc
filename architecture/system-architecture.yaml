@@ -1,0 +1,121 @@
+# System architecture (r3) and the allocation (r4). What explains them is in system-architecture.md.
+# Format: ../formats.md - schema: ../schemas/system-architecture.schema.json
+level: r3
+elements:
+- object_key: ARC-01
+  kind: subsystem
+  repo: viewer-edgedb
+  object_text: 'single page application: shows what the reporter answers - tables, charts, the trace -
+    with filters, and hands tables and charts on'
+  allocated: [SYS-01, SYS-02, SYS-03, SYS-04, SYS-05, SYS-06, SYS-07, SYS-08, SYS-09, SYS-10, SYS-12,
+    SYS-13, SYS-14, SYS-15, SYS-16, SYS-17, SYS-18, SYS-26, SYS-27, SYS-28, SYS-29, SYS-30, SYS-31, SYS-33,
+    SYS-34, SYS-35, SYS-37, SYS-38, SYS-39, SYS-52, SYS-55, SYS-57, SYS-58, SYS-59, SYS-63, SYS-64, SYS-65,
+    SYS-66, SYS-67, SYS-68, SYS-71, SYS-72]
+- object_key: ARC-02
+  kind: subsystem
+  repo: reporter-edgedb
+  object_text: 'REST API: answers trace, states, maturity and compliance from one data set; takes the
+    identity from the proxy or the identity provider and checks the role; records every report'
+  allocated: [SYS-01, SYS-02, SYS-03, SYS-04, SYS-05, SYS-06, SYS-07, SYS-08, SYS-09, SYS-10, SYS-11,
+    SYS-12, SYS-13, SYS-14, SYS-15, SYS-16, SYS-17, SYS-18, SYS-19, SYS-20, SYS-26, SYS-27, SYS-28, SYS-29,
+    SYS-30, SYS-31, SYS-32, SYS-34, SYS-35, SYS-37, SYS-38, SYS-39, SYS-40, SYS-43, SYS-44, SYS-45, SYS-46,
+    SYS-47, SYS-48, SYS-49, SYS-50, SYS-51, SYS-52, SYS-54, SYS-55, SYS-56, SYS-58, SYS-59, SYS-63, SYS-64,
+    SYS-65, SYS-66, SYS-67, SYS-68, SYS-70, SYS-71, SYS-72]
+- object_key: ARC-03
+  kind: subsystem
+  repo: storage-edgedb
+  object_text: 'the model, the data sets and the `Source` interface over them - a database branch, generated
+    data or a data file; the generator of data of known content; the import, the same for every system:
+    counts what was stored, fingerprints it, derives the mapped (`M`) values by the configuration of the
+    customer and the inherited (`I`) values, sets the state and keeps the import record; the audit trail'
+  allocated: [SYS-11, SYS-13, SYS-14, SYS-16, SYS-18, SYS-19, SYS-20, SYS-21, SYS-22, SYS-23, SYS-24,
+    SYS-25, SYS-26, SYS-27, SYS-28, SYS-32, SYS-35, SYS-36, SYS-38, SYS-40, SYS-41, SYS-42, SYS-43, SYS-44,
+    SYS-49, SYS-51, SYS-52, SYS-53, SYS-54, SYS-55, SYS-60, SYS-62, SYS-63, SYS-64, SYS-65, SYS-66, SYS-68,
+    SYS-69]
+- object_key: ARC-04
+  kind: subsystem
+  repo: converter-edgedb
+  object_text: maps the customized attributes of an attribute-based system to the model, by a configuration
+    file of the customer; one general mechanism for all of them
+  allocated: [SYS-02, SYS-07, SYS-08, SYS-12, SYS-15, SYS-17, SYS-22, SYS-23, SYS-24, SYS-25, SYS-27,
+    SYS-28, SYS-35, SYS-38, SYS-53, SYS-55, SYS-60, SYS-61, SYS-62, SYS-63, SYS-64, SYS-65, SYS-66, SYS-72]
+- object_key: ARC-05
+  kind: subsystem
+  repo: extractor-content
+  object_text: extracts the information the files of a file-based system hold - requirements, test cases,
+    test results, annotations -, with a package for each kind of content and no plug-in mechanism. The
+    package annotations reads `@implements` and `@verifies` from Go files; it is the repo reporter-annotations
+    today
+  allocated: [SYS-02, SYS-07, SYS-08, SYS-12, SYS-15, SYS-17, SYS-22, SYS-23, SYS-24, SYS-27, SYS-28,
+    SYS-35, SYS-38, SYS-53, SYS-55, SYS-63, SYS-64, SYS-65, SYS-66, SYS-72]
+- object_key: ARC-06
+  kind: subsystem
+  repo: extractor-SYSTEM
+  object_text: 'one per system, such as extractor-git or extractor-codebeamer: connects to it, lists and
+    fetches what it holds with its identity in the system - revision, commit - and counts it by a query
+    of its own'
+  allocated: [SYS-15, SYS-17, SYS-22, SYS-23, SYS-24, SYS-27, SYS-35, SYS-38, SYS-53, SYS-55, SYS-61,
+    SYS-63, SYS-64, SYS-65, SYS-66]
+- object_key: ARC-11
+  kind: interface
+  object_text: REST API
+  between: viewer → reporter
+  contract: swagger of reporter-edgedb
+- object_key: ARC-12
+  kind: interface
+  object_text: '`Source`'
+  between: reporter → storage
+  contract: Go interface in storage-edgedb
+- object_key: ARC-13
+  kind: interface
+  object_text: import
+  between: converter-edgedb, extractor-content → storage
+  contract: Go interface in storage-edgedb
+- object_key: ARC-14
+  kind: interface
+  object_text: system access
+  between: extractor-SYSTEM → system
+  contract: 'per system: listing and fetching, and a query of its own for counting'
+- object_key: ARC-15
+  kind: interface
+  object_text: files
+  between: extractor-SYSTEM → extractor-content
+  contract: a file with its kind and its identity in the system
+- object_key: ARC-16
+  kind: interface
+  object_text: information
+  between: extractor-content → storage
+  contract: 'the information extracted, per kind, over ARC-13; for annotations the format of #6'
+- object_key: ARC-17
+  kind: interface
+  object_text: identity
+  between: proxy or identity provider → reporter
+  contract: identity and groups of the user, handed on by the proxy or as a token (OIDC)
+- object_key: ARC-18
+  kind: interface
+  object_text: audit trail
+  between: reporter → storage
+  contract: Go interface in storage-edgedb
+- object_key: ARC-19
+  kind: interface
+  object_text: items
+  between: extractor-SYSTEM → converter-edgedb
+  contract: an item with its attributes as the system holds them, and its identity in the system
+- object_key: ARC-20
+  kind: interface
+  object_text: configuration
+  between: customer → converter-edgedb, storage
+  contract: the mapping of attributes and of values, one file per system of a customer
+decisions:
+- object_key: ARC-R01
+  object_text: Read only
+- object_key: ARC-D01
+  object_text: Independent count (SYS-23)
+- object_key: ARC-D02
+  object_text: Import record (SYS-26, SYS-41)
+- object_key: ARC-D03
+  object_text: Original and derived values (SYS-11)
+- object_key: ARC-D04
+  object_text: Configuration instead of code for the customer (SYS-22)
+- object_key: ARC-D05
+  object_text: 'Identity (SYS-39) - provisional, confirmed or changed by #22'

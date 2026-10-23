@@ -24,7 +24,8 @@ ISO/IEC/IEEE 12207, 6.4.4.
 
 The ids are `ARC-nn` for the subsystems and interfaces, `ARC-Rnn` for the rationale and
 `ARC-Dnn` for the decisions; a requirement that a decision made possible names it as its
-uplink. The format of this file is preliminary until #6 defines it.
+uplink. The elements, the allocation and the ids of rationale and decisions are in
+[system-architecture.yaml](system-architecture.yaml), in the format of [formats.md](../formats.md).
 
 ## Overview
 
@@ -62,29 +63,11 @@ flowchart LR
 
 ## Subsystems
 
-| Id | Subsystem | What it does |
-|---|---|---|
-| ARC-01 | viewer-edgedb | single page application: shows what the reporter answers - tables, charts, the trace - with filters, and hands tables and charts on |
-| ARC-02 | reporter-edgedb | REST API: answers trace, states, maturity and compliance from one data set; takes the identity from the proxy or the identity provider and checks the role; records every report |
-| ARC-03 | storage-edgedb | the model, the data sets and the `Source` interface over them - a database branch, generated data or a data file; the generator of data of known content; the import, the same for every system: counts what was stored, fingerprints it, derives the mapped (`M`) values by the configuration of the customer and the inherited (`I`) values, sets the state and keeps the import record; the audit trail |
-| ARC-04 | converter-edgedb | maps the customized attributes of an attribute-based system to the model, by a configuration file of the customer; one general mechanism for all of them |
-| ARC-05 | extractor-content | extracts the information the files of a file-based system hold - requirements, test cases, test results, annotations -, with a package for each kind of content and no plug-in mechanism. The package annotations reads `@implements` and `@verifies` from Go files; it is the repo reporter-annotations today |
-| ARC-06 | extractor-SYSTEM | one per system, such as extractor-git or extractor-codebeamer: connects to it, lists and fetches what it holds with its identity in the system - revision, commit - and counts it by a query of its own |
+`ARC-01` to `ARC-06`: in [system-architecture.yaml](system-architecture.yaml).
 
 ## Interfaces
 
-| Id | Interface | Between | Contract |
-|---|---|---|---|
-| ARC-11 | REST API | viewer → reporter | swagger of reporter-edgedb |
-| ARC-12 | `Source` | reporter → storage | Go interface in storage-edgedb |
-| ARC-13 | import | converter-edgedb, extractor-content → storage | Go interface in storage-edgedb |
-| ARC-14 | system access | extractor-SYSTEM → system | per system: listing and fetching, and a query of its own for counting |
-| ARC-15 | files | extractor-SYSTEM → extractor-content | a file with its kind and its identity in the system |
-| ARC-16 | information | extractor-content → storage | the information extracted, per kind, over ARC-13; for annotations the format of #6 |
-| ARC-17 | identity | proxy or identity provider → reporter | identity and groups of the user, handed on by the proxy or as a token (OIDC) |
-| ARC-18 | audit trail | reporter → storage | Go interface in storage-edgedb |
-| ARC-19 | items | extractor-SYSTEM → converter-edgedb | an item with its attributes as the system holds them, and its identity in the system |
-| ARC-20 | configuration | customer → converter-edgedb, storage | the mapping of attributes and of values, one file per system of a customer |
+`ARC-11` to `ARC-20`: in [system-architecture.yaml](system-architecture.yaml).
 
 ## Rationale
 
@@ -238,80 +221,7 @@ an identity provider (UN-OPS-01), with reports marked as made without login.
 
 V viewer, R reporter, S storage, C converter-edgedb, EC extractor-content, ES extractor-SYSTEM.
 
-| Id | V | R | S | C | EC | ES |
-|---|---|---|---|---|---|---|
-| SYS-01 | x | x | | | | |
-| SYS-02 | x | x | | x | x | |
-| SYS-03 | x | x | | | | |
-| SYS-04 | x | x | | | | |
-| SYS-05 | x | x | | | | |
-| SYS-06 | x | x | | | | |
-| SYS-07 | x | x | | x | x | |
-| SYS-08 | x | x | | x | x | |
-| SYS-09 | x | x | | | | |
-| SYS-10 | x | x | | | | |
-| SYS-11 | | x | x | | | |
-| SYS-12 | x | x | | x | x | |
-| SYS-13 | x | x | x | | | |
-| SYS-14 | x | x | x | | | |
-| SYS-15 | x | x | | x | x | x |
-| SYS-16 | x | x | x | | | |
-| SYS-17 | x | x | | x | x | x |
-| SYS-18 | x | x | x | | | |
-| SYS-19 | | x | x | | | |
-| SYS-20 | | x | x | | | |
-| SYS-21 | | | x | | | |
-| SYS-22 | | | x | x | x | x |
-| SYS-23 | | | x | x | x | x |
-| SYS-24 | | | x | x | x | x |
-| SYS-25 | | | x | x | | |
-| SYS-26 | x | x | x | | | |
-| SYS-27 | x | x | x | x | x | x |
-| SYS-28 | x | x | x | x | x | |
-| SYS-29 | x | x | | | | |
-| SYS-30 | x | x | | | | |
-| SYS-31 | x | x | | | | |
-| SYS-32 | | x | x | | | |
-| SYS-33 | x | | | | | |
-| SYS-34 | x | x | | | | |
-| SYS-35 | x | x | x | x | x | x |
-| SYS-36 | | | x | | | |
-| SYS-37 | x | x | | | | |
-| SYS-38 | x | x | x | x | x | x |
-| SYS-39 | x | x | | | | |
-| SYS-40 | | x | x | | | |
-| SYS-41 | | | x | | | |
-| SYS-42 | | | x | | | |
-| SYS-43 | | x | x | | | |
-| SYS-44 | | x | x | | | |
-| SYS-45 | | x | | | | |
-| SYS-46 | | x | | | | |
-| SYS-47 | | x | | | | |
-| SYS-48 | | x | | | | |
-| SYS-49 | | x | x | | | |
-| SYS-50 | | x | | | | |
-| SYS-51 | | x | x | | | |
-| SYS-52 | x | x | x | | | |
-| SYS-53 | | | x | x | x | x |
-| SYS-54 | | x | x | | | |
-| SYS-55 | x | x | x | x | x | x |
-| SYS-56 | | x | | | | |
-| SYS-57 | x | | | | | |
-| SYS-58 | x | x | | | | |
-| SYS-59 | x | x | | | | |
-| SYS-60 | | | x | x | | |
-| SYS-61 | | | | x | | x |
-| SYS-62 | | | x | x | | |
-| SYS-63 | x | x | x | x | x | x |
-| SYS-64 | x | x | x | x | x | x |
-| SYS-65 | x | x | x | x | x | x |
-| SYS-66 | x | x | x | x | x | x |
-| SYS-67 | x | x | | | | |
-| SYS-68 | x | x | x | | | |
-| SYS-69 | | | x | | | |
-| SYS-70 | | x | | | | |
-| SYS-71 | x | x | | | | |
-| SYS-72 | x | x | | x | x | |
+The allocation of every system requirement to the subsystems is the field `allocated` of each subsystem in [system-architecture.yaml](system-architecture.yaml).
 
 ## Open
 
