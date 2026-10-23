@@ -47,6 +47,7 @@ release.
 | REG-19 | ISO 26262-9, clause 5; ISO 26262-3, -4, -6 | a safety requirement inherits the ASIL of the requirement it is derived from; it may get a lower one only by an ASIL decomposition into independent requirements | automotive | SYS-70 |
 | REG-20 | ARP4754B, development assurance level assignment; DO-178C, 2.3 | an item gets the development assurance level (IDAL) of the function it realizes (FDAL), and its software the software level that follows from it; a lower level only where independence between the items is shown | airborne | SYS-70 |
 | REG-21 | IEC 61508-2, 7.4.3; IEC 61508-3, 7.4.2.8 to 7.4.2.10 | an element gets the SIL of the safety function it realizes; software elements of different SIL are all treated as of the highest one, unless their independence is shown | industry, railway (EN 50716) | SYS-70 |
+| REG-22 | IEC 62304, 4.3; 5.3.5 | a software item gets the software safety class of the software system or item it is decomposed from; a lower class only with a documented rationale, such as a segregation of the items | medical | SYS-70 |
 
 ## Products on the market
 

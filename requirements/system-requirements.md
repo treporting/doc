@@ -240,7 +240,7 @@ meant to be licensed must not be published under Apache-2.0 before, or it stays 
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-70 | analyse a data set, as a report, against rules of plausibility - a child with a lower safety class than its parent and no decomposition, an unclassified child under a classified parent, a passed test result without a test case, a cycle in the trace, a link into another baseline; the import reads the data as it is and is never stopped or changed by such a finding | UN-SAF-01, UN-SAF-03, UN-PSF-01, REG-19, REG-20, REG-21 |
+| SYS-70 | analyse a data set, as a report, against rules of plausibility - a child with a lower safety class than its parent and no decomposition, an unclassified child under a classified parent, a passed test result without a test case, a cycle in the trace, a link into another baseline; the import reads the data as it is and is never stopped or changed by such a finding | UN-SAF-01, UN-SAF-03, UN-PSF-01, REG-19, REG-20, REG-21, REG-22 |
 | SYS-71 | show every finding of SYS-70 with its rule and its objects, in a view of its own | UN-SAF-01, UN-PSF-03 |
 | SYS-72 | recognize a finding as evaluated when its object carries an evaluation in its source - an attribute or a link set by the configuration -, and show for every finding whether it is evaluated or open, with the evaluation | UN-ASR-07, UN-SAF-01, REG-10 |
 
