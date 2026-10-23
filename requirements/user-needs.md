@@ -21,6 +21,7 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 | UN-RM-02 | Sees whether maturity grows from release to release and from library to library. |
 | UN-RM-03 | Knows which build and which data a report was made from. |
 | UN-RM-04 | Hands a report on to people who do not use the system. |
+| UN-RM-05 | Approves a release so that the approval names the person, the time and its meaning, and stays bound to what was approved. |
 
 ## Configuration Manager - CM
 
@@ -55,6 +56,9 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 | UN-ASR-01 | Sees which clauses of the standards chosen are addressed and verified, per release. |
 | UN-ASR-02 | Can check the evidence: which revision, which data, how many objects. |
 | UN-ASR-03 | Compares the project against a process reference model - ASPICE, DO-178C, EN 50716, IEC 62304, IEC 61508. |
+| UN-ASR-04 | Sees who produced a report, when, from which data and revision, and with which parameters. |
+| UN-ASR-05 | Sees every import or change of data - who, when, what - and the state before it. |
+| UN-ASR-06 | Gets complete copies of the records, readable by people and by machines. |
 
 ## Developer - DEV
 
@@ -80,6 +84,8 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 | UN-OPS-05 | Moves to a new version without losing or changing the data. |
 | UN-OPS-06 | Knows when it is not available, and why. |
 | UN-OPS-07 | Finds the cause of a failure from what it recorded. |
+| UN-OPS-08 | Gives access only to authorised people, each known by an identity of their own. |
+| UN-OPS-09 | Keeps the records and their history for a set period, readable throughout. |
 
 ## All roles - ALL
 
@@ -88,6 +94,7 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 | UN-ALL-01 | Understands what to do on a first look, without being told. |
 | UN-ALL-02 | Knows whether the data shown is complete or still loading. |
 | UN-ALL-03 | Knows which data set a view answers from. |
+| UN-ALL-04 | Is recorded only for a stated purpose and period, and only those who need it see the record. |
 
 ## Safety of the product - PSF
 
@@ -103,7 +110,3 @@ nothing, but a gap it hides can lead to a wrong release. The analysis of the too
 | UN-PSF-04 | Relies on being told of every error that occurred while the data was read in. |
 | UN-PSF-05 | Relies on every figure measuring what its label says. |
 | UN-PSF-06 | Gets the same report from the same data and revision. |
-
-## Open
-
-- The audit and regulatory needs are added by #11.
