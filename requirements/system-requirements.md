@@ -60,48 +60,50 @@ needs it comes from - the roles of `user-needs.md` - and the feature of its sect
 | SYS-20 | hold several data sets apart - generated data and data read in, each baseline on its own - and answer each request from exactly one of them | UN-OPS-03 |
 | SYS-21 | answer from a data file when no database server can be reached | UN-OPS-01 |
 | SYS-22 | read the data of different tools into one model, and name every object it could not read, with the reason | UN-OPS-02, UN-PSF-04 |
+| SYS-23 | compare, for every import, the number of objects of each kind read with the number in the source, and name every difference | UN-PSF-01, UN-PSF-04 |
+| SYS-24 | build the same data set from the same source on every import | UN-PSF-06 |
 
 ## Errors
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-23 | show a value that is unknown as unknown, distinct from zero, empty or passed | UN-PSF-02 |
-| SYS-24 | refuse a request it cannot answer, with the reason, rather than answer it empty | UN-PSF-02, UN-PSF-04 |
-| SYS-25 | say for every figure what it counts, and count in a chart exactly what the table beside it shows | UN-PSF-05 |
+| SYS-25 | show a value that is unknown as unknown, distinct from zero, empty or passed | UN-PSF-02 |
+| SYS-26 | refuse a request it cannot answer, with the reason, rather than answer it empty | UN-PSF-02, UN-PSF-04 |
+| SYS-27 | say for every figure what it counts, and count in a chart exactly what the table beside it shows | UN-PSF-05 |
 
 ## Export
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-26 | export every table in a machine-readable format and every chart as a picture | UN-RM-04, UN-ASR-06 |
-| SYS-27 | export complete records with their history, readable by people and by machines | UN-ASR-06 |
+| SYS-28 | export every table in a machine-readable format and every chart as a picture | UN-RM-04, UN-ASR-06 |
+| SYS-29 | export complete records with their history, readable by people and by machines | UN-ASR-06 |
 
 ## Usability
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-28 | say on the first screen what it does and where to start, and lead back there from any view | UN-ALL-01 |
-| SYS-29 | show while a view is loading, or while the data is not there yet, that it is, and fill the view by itself when the data arrives | UN-ALL-02 |
+| SYS-30 | say on the first screen what it does and where to start, and lead back there from any view | UN-ALL-01 |
+| SYS-31 | show while a view is loading, or while the data is not there yet, that it is, and fill the view by itself when the data arrives | UN-ALL-02 |
 
 ## Operation
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-30 | be installed and started from a release by following its operator manual alone | UN-OPS-04 |
-| SYS-31 | keep the data unchanged when moved to a new version, and say before the move which data the new version cannot read | UN-OPS-05 |
-| SYS-32 | tell the user when it, or a part of it, is not available, and why | UN-OPS-06 |
-| SYS-33 | record its errors and warnings with time and cause | UN-OPS-07 |
+| SYS-32 | be installed and started from a release by following its operator manual alone | UN-OPS-04 |
+| SYS-33 | keep the data unchanged when moved to a new version, and say before the move which data the new version cannot read | UN-OPS-05 |
+| SYS-34 | tell the user when it, or a part of it, is not available, and why | UN-OPS-06 |
+| SYS-35 | record its errors and warnings with time and cause | UN-OPS-07 |
 
 ## Audit
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-34 | authenticate every user by an identity of their own, and grant access by role | UN-OPS-08 |
-| SYS-35 | record for every report who produced it, when, from which data set and revision, and with which parameters | UN-ASR-04 |
-| SYS-36 | record every import and change of data - who, when, what - and keep the state before it | UN-ASR-05 |
-| SYS-37 | keep the records and their audit trail for a set period, readable throughout | UN-OPS-09 |
-| SYS-38 | record an approval of a release with the approver, the time, its meaning and a fingerprint of what was approved, and never change an approval afterwards | UN-RM-05 |
-| SYS-39 | use the record of what users did only for the purposes set, delete it after the period set, and show it only to the roles allowed to see it | UN-ALL-04 |
+| SYS-36 | authenticate every user by an identity of their own, and grant access by role | UN-OPS-08 |
+| SYS-37 | record for every report who produced it, when, from which data set and revision, and with which parameters | UN-ASR-04 |
+| SYS-38 | record every import and change of data - who, when, what - and keep the state before it | UN-ASR-05 |
+| SYS-39 | keep the records and their audit trail for a set period, readable throughout | UN-OPS-09 |
+| SYS-40 | record an approval of a release with the approver, the time, its meaning and a fingerprint of what was approved, and never change an approval afterwards | UN-RM-05 |
+| SYS-41 | use the record of what users did only for the purposes set, delete it after the period set, and show it only to the roles allowed to see it | UN-ALL-04 |
 
 ## Maturity
 
@@ -132,20 +134,20 @@ so that 100 % can always be reached.
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-40 | give the maturity of a requirement as the share of the steps of the longest chain it has reached | UN-RM-02, UN-QA-02 |
-| SYS-41 | give the maturity of each group - RG-SYS-R, RG-SW-R, RG-SC, RG-OC, RG-SW-TC, RG-SW-TR, RG-SYS-TC, RG-SYS-TR - as the share of the steps of that group reached | UN-RM-02, UN-QA-02 |
-| SYS-42 | count a test result as reached only when it passed | UN-PSF-05 |
-| SYS-43 | count a step as reached only when every branch below the requirement reaches it | UN-PSF-01 |
-| SYS-44 | take the longest chain from the process reference model in use and the coverage levels coded for source code and object code - ASPICE with one level each, 20 steps, when none is chosen - and leave out every step whose level holds no object in the release; every report states the chain it used and the steps it left out | UN-QA-04, UN-ASR-03, UN-PSF-05, UN-ASR-02 |
-| SYS-45 | give the maturity of a level, a feature or a release as the mean of the maturity of its requirements | UN-RM-02, UN-QA-02 |
+| SYS-42 | give the maturity of a requirement as the share of the steps of the longest chain it has reached | UN-RM-02, UN-QA-02 |
+| SYS-43 | give the maturity of each group - RG-SYS-R, RG-SW-R, RG-SC, RG-OC, RG-SW-TC, RG-SW-TR, RG-SYS-TC, RG-SYS-TR - as the share of the steps of that group reached | UN-RM-02, UN-QA-02 |
+| SYS-44 | count a test result as reached only when it passed | UN-PSF-05 |
+| SYS-45 | count a step as reached only when every branch below the requirement reaches it | UN-PSF-01 |
+| SYS-46 | take the longest chain from the process reference model in use and the coverage levels coded for source code and object code - ASPICE with one level each, 20 steps, when none is chosen - and leave out every step whose level holds no object in the release; every report states the chain it used and the steps it left out | UN-QA-04, UN-ASR-03, UN-PSF-05, UN-ASR-02 |
+| SYS-47 | give the maturity of a level, a feature or a release as the mean of the maturity of its requirements | UN-RM-02, UN-QA-02 |
 
 ## Constraints
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-46 | carry a legal notice and a privacy notice on every page reachable from the internet | constraint (German law) |
+| SYS-48 | carry a legal notice and a privacy notice on every page reachable from the internet | constraint (German law) |
 
 ## Open
 
-- **Approval**: whether a signed git tag fulfils SYS-38 is decided by the architecture (#4).
+- **Approval**: whether a signed git tag fulfils SYS-40 is decided by the architecture (#4).
 - **Figures**: no requirement names a time, a size or an availability yet.
