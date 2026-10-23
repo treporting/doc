@@ -17,11 +17,11 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 
 | Id | Need |
 |---|---|
-| UN-RM-01 | Before a release, sees which of its requirements are not yet backed by passed tests. |
+| UN-RM-01 | Sees which of its requirements are not yet backed by passed tests. |
 | UN-RM-02 | Sees whether maturity grows from release to release and from library to library. |
 | UN-RM-03 | Knows which build and which data a report was made from. |
 | UN-RM-04 | Hands a report on to people who do not use the system. |
-| UN-RM-05 | Approves a release so that the approval names the person, the time and its meaning, and stays bound to what was approved. |
+| UN-RM-05 | Approves a release, and may use the reported data as information for it. |
 
 ## Configuration Manager - CM
 
