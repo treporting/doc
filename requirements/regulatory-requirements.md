@@ -39,3 +39,16 @@ release.
 | REG-11 | GDPR, Art. 5(1)(b), (e) | process personal data only for the purposes stated, and keep it no longer than they need | EU | SYS-44 |
 | REG-12 | BetrVG, §87(1) no. 6 | a technical means that can monitor the behaviour or performance of employees needs the consent of the works council | Germany | SYS-44 |
 | REG-13 | DDG, §5; GDPR, Art. 13 | a service on the internet names who runs it, and tells users what personal data it processes | Germany, EU | SYS-57 |
+
+## Products on the market
+
+treporting is open source with licensed features, offered commercially (#24). Whether and from
+when the Cyber Resilience Act applies to it is to be confirmed by legal advice.
+
+| Id | Source | Asks | Applies to | Realized by |
+|---|---|---|---|---|
+| REG-14 | CRA (EU) 2024/2847, Annex I Part I | a product with digital elements is placed on the market without known exploitable vulnerabilities, with a secure configuration by default, and can be secured by updates | EU, commercial | SYS-63, SYS-64, SYS-65 |
+| REG-15 | CRA, Annex I Part II | the manufacturer handles vulnerabilities: keeps an SBOM, fixes without delay and free of charge, has a policy of coordinated disclosure and a contact for reports | EU, commercial | SYS-63, SYS-65, SYS-67 |
+| REG-16 | CRA, Art. 14 | an actively exploited vulnerability is notified: an early warning within 24 hours, a notification within 72 hours, a final report later | EU, commercial | not realized: a duty of the manufacturer, kept by our work (harness) |
+| REG-17 | CRA, Art. 13(8) | security updates are provided over a support period stated in advance, as a rule at least five years | EU, commercial | SYS-66 |
+| REG-18 | licences of the components, e.g. Apache-2.0 §4 | a release hands on the licence texts and notices of every component it contains | all | SYS-63 |

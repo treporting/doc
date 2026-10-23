@@ -269,9 +269,23 @@ V viewer, R reporter, S storage, C converter-edgedb, EC extractor-content, ES ex
 | SYS-55 | x | x | x | x | x | x |
 | SYS-56 | | x | | | | |
 | SYS-57 | x | | | | | |
+| SYS-58 | x | x | | | | |
+| SYS-59 | x | x | | | | |
+| SYS-60 | | | x | x | | |
+| SYS-61 | | | | x | | x |
+| SYS-62 | | | x | x | | |
+| SYS-63 | x | x | x | x | x | x |
+| SYS-64 | x | x | x | x | x | x |
+| SYS-65 | x | x | x | x | x | x |
+| SYS-66 | x | x | x | x | x | x |
+| SYS-67 | x | x | | | | |
 
 ## Open
 
+- **Licensed features** (SYS-58, SYS-59), priority later - none exists yet: they would be in the
+  product and checked per route - role, rights, licence -, under the Elastic License 2.0 in a
+  directory of their own per repo. Where their source lives and how the licence of an installation is proved is
+  to be decided.
 - **Repos**: reporter-annotations becomes the package annotations of extractor-content; the repos
   of extractor-content and of the extractors per system are not created yet.
 - **Generator**: the data of known content for SYS-27 is made by the generator in storage; the

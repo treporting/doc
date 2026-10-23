@@ -199,6 +199,35 @@ The sizes of a data set:
 |---|---|---|
 | SYS-57 | carry a legal notice and a privacy notice on every page reachable from the internet | REG-13 |
 
+## Licensing
+
+Priority **later**: treporting has no licensed feature yet - everything is under Apache-2.0
+(#24). These requirements keep the way open for features developed for customers. A feature
+meant to be licensed must not be published under Apache-2.0 before, or it stays free for good.
+
+| Id | The system shall | From |
+|---|---|---|
+| SYS-58 | check, on every request to a licensed feature, the role and the rights of the user and the licence of the installation, and refuse the request with the reason when one of them is missing | UN-OPS-10 |
+| SYS-59 | show which features an installation is licensed for | UN-OPS-10 |
+
+## Configuration
+
+| Id | The system shall | From |
+|---|---|---|
+| SYS-60 | take the mapping of attributes and values from a configuration file per system of a customer, and take code of the customer, kept outside the core, only where a configuration cannot say it | UN-CFG-01 |
+| SYS-61 | check a configuration against the data of its system, and name every attribute and every value it does not map | UN-CFG-02 |
+| SYS-62 | read the configurations and the catalogues of the customer - such as the mapping of the clauses of a standard to work products - from a place the operator sets, outside the installation of the product | UN-CFG-03 |
+
+## Delivery
+
+| Id | The system shall | From |
+|---|---|---|
+| SYS-63 | come with an SBOM in every release, naming each component, its version and its licence, and with the licence texts and notices of the components | UN-OPS-12, REG-14, REG-15, REG-18 |
+| SYS-64 | be delivered with a secure configuration by default | REG-14 |
+| SYS-65 | be updatable to a release that fixes a vulnerability, without other changes coming with it | UN-OPS-11, REG-14, REG-15 |
+| SYS-66 | state the period over which a release gets security fixes | UN-OPS-11, REG-17 |
+| SYS-67 | name, in every release and on the demo, where a vulnerability is reported and how it is handled | UN-OPS-13, REG-15 |
+
 ## Open
 
 - **Figures**: the measured and the target figures in the tables of [Performance](#performance) (#16).
