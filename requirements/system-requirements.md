@@ -169,13 +169,36 @@ so that 100 % can always be reached.
 | SYS-49 | take the longest chain from the process reference model in use and the coverage levels coded for source code and object code - ASPICE with one level each, 20 steps, when none is chosen - and leave out every step whose level holds no object in the release; every report states the chain it used and the steps it left out | UN-QA-04, UN-ASR-03, UN-PSF-05, UN-ASR-02 |
 | SYS-50 | give the maturity of a level, a feature or a release as the mean of the maturity of its requirements | UN-RM-02, UN-QA-02 |
 
+## Performance
+
+The non-functional requirements. Their figures are measured first on the prototype with generated
+data, then set as targets (#16); until then they read *open*. A requirement of another feature that
+depends on a figure refers to the requirement here.
+
+The sizes of a data set:
+
+| Size | Requirements | Links | Test results | Baselines |
+|---|---|---|---|---|
+| small | open | open | open | open |
+| medium | open | open | open | open |
+| large | open | open | open | open |
+
+| Id | The system shall | Measured | Target | From |
+|---|---|---|---|---|
+| SYS-51 | answer from a data set of size large | open | open | UN-OPS-02, UN-OPS-03 |
+| SYS-52 | show a view of a data set of size large within the time given | open | open | UN-ALL-02 |
+| SYS-53 | import a data set of size large, with the checks of Integrity, within the time given | open | open | UN-OPS-02 |
+| SYS-54 | be ready to answer within the time given after it was started | open | open | UN-OPS-04, UN-OPS-06 |
+| SYS-55 | run within the memory and the processor time given | open | open | UN-OPS-01, UN-OPS-04 |
+| SYS-56 | serve the number of users given at once, each within the time of SYS-52 | open | open | UN-OPS-08 |
+
 ## Constraints
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-51 | carry a legal notice and a privacy notice on every page reachable from the internet | constraint (German law) |
+| SYS-57 | carry a legal notice and a privacy notice on every page reachable from the internet | constraint (German law) |
 
 ## Open
 
 - **Approval**: whether a signed git tag fulfils SYS-43 is decided by the architecture (#4).
-- **Figures**: no requirement names a time, a size or an availability yet.
+- **Figures**: the measured and the target figures of Performance (#16).
