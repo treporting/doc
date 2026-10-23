@@ -201,4 +201,4 @@ The sizes of a data set:
 ## Open
 
 - **Approval**: whether a signed git tag fulfils SYS-43 is decided by the architecture (#4).
-- **Figures**: the measured and the target figures of Performance (#16).
+- **Figures**: the measured and the target figures in the tables of [Performance](#performance) (#16).
