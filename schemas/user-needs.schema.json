@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/treporting/treporting/schemas/user-needs.schema.json",
+  "title": "User needs (r1)",
+  "description": "Draft until the gel schema stands (treporting/storage-edgedb#3); field names are the properties of the gel schema.",
+  "type": "object",
+  "required": [
+    "level",
+    "requirements"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "level": {
+      "const": "r1"
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "object_key",
+          "object_text",
+          "function"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "object_key": {
+            "type": "string",
+            "pattern": "^UN-[A-Z]+-[0-9]{2}$"
+          },
+          "object_text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "function": {
+            "type": "string",
+            "pattern": "^[A-Z]+$"
+          },
+          "priority": {
+            "enum": [
+              "later"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
