@@ -75,6 +75,11 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 |---|---|
 | UN-OPS-01 | Runs it where no database server can be reached. |
 | UN-OPS-02 | Brings together what is kept in different tools - DOORS, Git, SVN, codebeamer and others. |
+| UN-OPS-03 | Keeps several data sets side by side and apart - generated data and data read in, each baseline on its own. |
+| UN-OPS-04 | Gets it running without help from those who built it. |
+| UN-OPS-05 | Moves to a new version without losing or changing the data. |
+| UN-OPS-06 | Knows when it is not available, and why. |
+| UN-OPS-07 | Finds the cause of a failure from what it recorded. |
 
 ## All roles - ALL
 
@@ -82,8 +87,23 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 |---|---|
 | UN-ALL-01 | Understands what to do on a first look, without being told. |
 | UN-ALL-02 | Knows whether the data shown is complete or still loading. |
+| UN-ALL-03 | Knows which data set a view answers from. |
+
+## Safety of the product - PSF
+
+What every role relies on when it decides on what treporting shows. treporting controls
+nothing, but a gap it hides can lead to a wrong release. The analysis of the tool's failures
+(#12) traces to these needs.
+
+| Id | Need |
+|---|---|
+| UN-PSF-01 | Relies on a gap in the trace never being shown as covered. |
+| UN-PSF-02 | Relies on what is unknown being shown as unknown - never as zero, empty or passed. |
+| UN-PSF-03 | Relies on a filter never hiding an object without saying so. |
+| UN-PSF-04 | Relies on being told of every error that occurred while the data was read in. |
+| UN-PSF-05 | Relies on every figure measuring what its label says. |
+| UN-PSF-06 | Gets the same report from the same data and revision. |
 
 ## Open
 
-- The safety and operational needs are added by #2.
 - The audit and regulatory needs are added by #11.
