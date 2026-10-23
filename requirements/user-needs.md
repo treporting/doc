@@ -59,6 +59,7 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 | UN-ASR-04 | Sees who produced a report, when, from which data and revision, and with which parameters. |
 | UN-ASR-05 | Sees every import or change of data - who, when, what - and the state before it. |
 | UN-ASR-06 | Gets complete copies of the records, readable by people and by machines. |
+| UN-ASR-07 | Sees which findings of a release were evaluated, by whom and where. |
 
 ## Developer - DEV
 
