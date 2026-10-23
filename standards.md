@@ -13,6 +13,7 @@ the standardized one (see Process in [definitions.md](definitions.md)).
 | railway | EN 50126-1 (RAMS), EN 50716 (software, replaces EN 50128 and EN 50657), EN 50129 | EN 50126-1, EN 50126-2 | hazard log, with hazard analysis and risk assessment, EN 50126-1 | CLC/TS 50701 | threat and risk assessment, CLC/TS 50701 |
 | medical | ISO 13485 (quality management), IEC 62304 (software), IEC 60601-1 (electrical equipment) | ISO 14971 | risk management file, ISO 14971 | IEC 81001-5-1 | threat model, IEC 81001-5-1 |
 | industrial | IEC 61508 | IEC 61508 | H&RA - hazard and risk analysis, IEC 61508-1 7.4 | IEC 62443 | threat and risk assessment, IEC 62443-3-2 |
+| software | ISO/IEC/IEEE 12207, ISO/IEC/IEEE 29119 (test) | ISO/IEC/IEEE 15026 (assurance) | hazard and risk analysis, by the method of IEC 61508-1 7.4 | IEC 62443-4-1 | threat and risk assessment, IEC 62443-3-2 |
 
 ## Across domains
 

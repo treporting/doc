@@ -43,7 +43,7 @@ needs it comes from - the roles of `user-needs.md` - and the feature of its sect
 | Id | The system shall | From |
 |---|---|---|
 | SYS-13 | show per clause of a chosen standard whether it is open, addressed or verified, per release | UN-ASR-01 |
-| SYS-14 | show one data set in the vocabulary of a chosen process reference model - ASPICE, DO-178C, EN 50716, IEC 62304, IEC 61508 | UN-QA-04, UN-ASR-03 |
+| SYS-14 | show one data set in the vocabulary of a chosen process reference model - ASPICE, DO-178C, EN 50716, IEC 62304, IEC 61508, ISO/IEC/IEEE 12207 | UN-QA-04, UN-ASR-03 |
 
 ## Baselines
 

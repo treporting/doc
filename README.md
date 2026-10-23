@@ -8,14 +8,14 @@ from the systems a project keeps its work in, and only reads them.
 
 | File | What it holds | Ids |
 |---|---|---|
-| [harness.md](harness.md) | how we work: the process we follow (IEC 61508), our levels, the rules of our work, the loops for every change and every release | `PROC-nn` |
+| [harness.md](harness.md) | how we work: the process we follow (ISO/IEC/IEEE 12207, 29119), our levels, the rules of our work, the loops for every change and every release | `PROC-nn` |
 | [definitions.md](definitions.md) | the terms: system, item, content, work product, release, library, baseline, traceability | - |
 | [standards.md](standards.md) | the process, safety and security standards per domain | - |
 | [requirements/user-needs.md](requirements/user-needs.md) | what each role needs, without a solution (r1) | `UN-<role>-nn` |
 | [requirements/regulatory-requirements.md](requirements/regulatory-requirements.md) | what standards and laws ask | `REG-nn` |
 | [requirements/system-requirements.md](requirements/system-requirements.md) | what the system has to do, seen as one box (r2); each section is a feature | `SYS-nn` |
 | [architecture/system-architecture.md](architecture/system-architecture.md) | the subsystems, their interfaces, the rationale and the decisions, and which subsystem realizes which requirement (r3) | `ARC-nn` |
-| [safety/hazard-and-risk-analysis.md](safety/hazard-and-risk-analysis.md) | the hazards treporting can cause | `HAZ-nn` |
+| [safety/hazard-and-risk-analysis.md](safety/hazard-and-risk-analysis.md) | the hazards treporting can cause (h1) and the measures that control them (h2) | `HAZ-nn`, `HAZC-nn` |
 
 The software requirements (r5, `SR-<subsystem>-nn`) live in the repo of their subsystem, next to
 the code that realizes them.
@@ -23,11 +23,10 @@ the code that realizes them.
 ## How the ids hang together
 
 ```
-UN  (needs of a role)   ─┐
-REG (standards, laws)   ─┼─→  SYS  ─→  ARC  ─→  SR  ─→  code, tests
-HAZ (hazards)           ─┘     ↑
-THR (threats) ─────────────────┤  a threat to the product leads to SYS
-                └──────────────→  PROC  a threat to our work leads to a rule of the harness
+HAZ, THR (h1)  →  HAZC, THRC (h2)  →  UN (r1) ─┐
+                                   REG (n1) ─┼─→  SYS (r2)  →  ARC (r3)  →  SR (r5)  →  code, tests
+                                              ┘
+THRC of a threat to our work  →  PROC, a rule of the harness
 ```
 
 The threats (`THR-nn`) are being worked out in #22.

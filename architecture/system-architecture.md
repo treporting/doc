@@ -18,9 +18,9 @@ its own. r4 is the allocation in this file: the system requirements allocated to
 its requirements, derived directly from r2, with no ids of their own.
 
 The terms - system, item, content, work product, release, library, baseline - are those of
-[definitions.md](../definitions.md). The levels follow IEC 61508 as set out in the section
-Process of [harness.md](../harness.md); this file is r3, the E/E/PE system design and
-architecture of IEC 61508-2, 7.4.
+[definitions.md](../definitions.md). The levels follow ISO/IEC/IEEE 12207 as set out in the section
+Process of [harness.md](../harness.md); this file is r3, the architecture definition of
+ISO/IEC/IEEE 12207, 6.4.4.
 
 The ids are `ARC-nn`. The format of this file is preliminary until #6 defines it.
 

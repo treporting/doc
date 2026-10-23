@@ -7,48 +7,72 @@ one level above the repos.
 
 ## Process
 
-treporting is developed following the process of the domain *industrial* (see
-[standards.md](standards.md)):
+treporting is a pure software project and is developed following the process of the domain
+*software* (see [standards.md](standards.md)):
 
-- **IEC 61508** is the reference for the life cycle. treporting is no safety function but a tool,
-  so no SIL applies: IEC 61508 is the process model, and REG-02 (tool class T2) the requirement
-  on the tool.
-- **safety analysis**: the hazard and risk analysis after IEC 61508-1, 7.4, in
-  [safety/hazard-and-risk-analysis.md](safety/hazard-and-risk-analysis.md).
-- **security**: IEC 62443-4-1 for the secure development, IEC 62443-3-2 for the analysis of the
-  threats (THR, #22).
+- **ISO/IEC/IEEE 12207** is the life cycle, **ISO/IEC/IEEE 29119** gives the test levels.
+- 12207 knows no safety and no security, so companion standards are added:
+  - **safety analysis**: the hazard and risk analysis by the method of IEC 61508-1, 7.4, in
+    [safety/hazard-and-risk-analysis.md](safety/hazard-and-risk-analysis.md) (HAZ);
+  - **security**: IEC 62443-4-1 for the secure development, IEC 62443-3-2 for the analysis of the
+    threats (THR, #22);
+  - **assurance**: ISO/IEC/IEEE 15026 is proposed for the case why the tool can be relied on
+    (#12).
+- **project risks** are handled by the risk management process of 12207, 6.3.4.
+- REG-01 to REG-04 are requirements on the tool from the domains of its users, not our process.
 
 ### Levels
 
-| Level | Here | IEC 61508 |
+| Level | Here | ISO/IEC/IEEE 12207 |
 |---|---|---|
-| r1 | user needs (UN), regulatory requirements (REG) | -1, 7.2 concept, 7.3 overall scope; 7.4 hazard and risk analysis (HAZ) |
-| r2 | system requirements (SYS) | -1, 7.5 overall safety requirements; 7.10 E/E/PE system safety requirements |
-| r3 | system architecture (ARC) | -2, 7.4 E/E/PE system design and architecture |
-| r4 | the system requirements allocated to the subsystems - derived directly from r2 by the allocation in the system architecture, with no ids of their own | -1, 7.6 overall safety requirements allocation |
-| r5 | software requirements (SR) per subsystem | -3, 7.2 software safety requirements specification |
+| h1 | hazards (HAZ) and threats (THR), told apart by their prefix - a trace starts here or at r1 | - (method of IEC 61508-1, 7.4; IEC 62443-3-2) |
+| h2 | the measure that controls a hazard (HAZC) or a threat (THRC), and asks for r1 | - |
+| n1 | the clauses of the standards and laws to be met: regulatory requirements (REG) | 6.4.2 stakeholder needs and requirements definition |
+| r1 | user needs (UN) | 6.4.2 stakeholder needs and requirements definition |
+| r2 | system requirements (SYS) | 6.4.3 system requirements definition |
+| r3 | system architecture (ARC) | 6.4.4 architecture definition |
+| r4 | the system requirements allocated to the subsystems - derived directly from r2 by the allocation in the system architecture, with no ids of their own | 6.4.4 architecture definition |
+| r5 | software requirements (SR) per subsystem | 6.4.3 software requirements definition |
+
+In the level view of the reporter, RISK+SYS+SW, h1 and h2 are RISK, r1 to r3 with the system
+tests SYS, r5 with the design, the code and the software tests SW. n1 is read by the compliance
+view, not by a trace.
+
+### Test levels
+
+| Level | ISO/IEC/IEEE 29119 | What | Data |
+|---|---|---|---|
+| MT | unit test | a function or a package | made in the test |
+| SwIT | integration test | a subsystem, through its API and its model | synthetic, in memory |
+| SwVal | subsystem test | a subsystem against its SR, through its API and its model | from gel |
+| SysIT | system integration test | the containers built and working together | - |
+| SysQT | system test | the system against SYS | the containers with demo data |
+| Val | acceptance test | the system against the user needs | the containers with reference data |
+
+A software test names SR in `@verifies`, a system test SYS.
 
 ### Maturity of our own data
 
-The data of treporting itself (the reference edgedb, #9) is measured by the chain of
-IEC 61508-3:
+The data of treporting itself (the reference edgedb, #9) is measured by this chain:
 
-| Order | Object | IEC 61508-3 | Group |
+| Order | Object | ISO/IEC/IEEE 12207, 29119 | Group |
 |---|---|---|---|
-| 1 | system requirement | -2, 7.2 | RG-SYS-R |
-| 2 | system architecture | -2, 7.4 | RG-SYS-R |
-| 3 | software requirement | 7.2 | RG-SW-R |
-| 4 | software architecture | 7.4.3 | RG-SW-R |
-| 5 | software system design | 7.4.5 | RG-SW-R |
-| 6 | module design | 7.4.5 | RG-SW-R |
-| 7 | source code, one step per coverage level | 7.4.6 | RG-SC |
-| 8 | object code, one step per coverage level | - | RG-OC |
-| 9 | test case, test result of the module test | 7.4.7 | RG-SW-TC, RG-SW-TR |
-| 10 | test case, test result of the module integration test | 7.4.8 | RG-SW-TC, RG-SW-TR |
-| 11 | test case, test result of the integration of software and hardware | 7.5 | RG-SW-TC, RG-SW-TR |
-| 12 | test case, test result of the software validation | 7.7 | RG-SYS-TC, RG-SYS-TR |
+| 1 | stakeholder requirement | 6.4.2 | RG-SYS-R |
+| 2 | system requirement | 6.4.3 | RG-SYS-R |
+| 3 | system architecture | 6.4.4 | RG-SYS-R |
+| 4 | software requirement | 6.4.3 | RG-SW-R |
+| 5 | software architecture - the components | 6.4.4 | RG-SW-R |
+| 6 | software design - the modules | 6.4.5 | RG-SW-R |
+| 7 | source code, one step per coverage level | 6.4.7 | RG-SC |
+| 8 | object code, one step per coverage level | 6.4.7 | RG-OC |
+| 9 | test case, test result of the unit test (MT) | 29119 | RG-SW-TC, RG-SW-TR |
+| 10 | test case, test result of the integration test (SwIT) | 29119 | RG-SW-TC, RG-SW-TR |
+| 11 | test case, test result of the subsystem test (SwVal) | 29119 | RG-SW-TC, RG-SW-TR |
+| 12 | test case, test result of the system integration test (SysIT) | 29119 | RG-SYS-TC, RG-SYS-TR |
+| 13 | test case, test result of the system test (SysQT) | 29119 | RG-SYS-TC, RG-SYS-TR |
+| 14 | test case, test result of the acceptance test (Val) | 29119 | RG-SYS-TC, RG-SYS-TR |
 
-With one coverage level each, the chain has 16 steps.
+With one coverage level each, the chain has 20 steps.
 
 ## Rules
 
