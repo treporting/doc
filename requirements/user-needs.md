@@ -55,7 +55,7 @@ The ids are `UN-<role>-nn`. The format of this file is preliminary until #6 defi
 |---|---|
 | UN-ASR-01 | Sees which clauses of the standards chosen are addressed and verified, per release. |
 | UN-ASR-02 | Can check the evidence: which revision, which data, how many objects. |
-| UN-ASR-03 | Compares the project against a process reference model - ASPICE, DO-178C, EN 50716, IEC 62304, IEC 61508. |
+| UN-ASR-03 | Compares the project against a process reference model - ASPICE, DO-178C, EN 50716, IEC 62304, IEC 61508, ISO/IEC/IEEE 12207. |
 | UN-ASR-04 | Sees who produced a report, when, from which data and revision, and with which parameters. |
 | UN-ASR-05 | Sees every import or change of data - who, when, what - and the state before it. |
 | UN-ASR-06 | Gets complete copies of the records, readable by people and by machines. |
