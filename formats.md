@@ -30,13 +30,15 @@ holds only what the author writes:
 |---|---|---|---|
 | content | `object_key`, `object_text`, `level`, `function`, `feature`, `component`, `priority`, `safety`, `status`, the uplink | the author | yes |
 | context | `organization`, `project`, `baseline`, `library`, `system`, `module_id`, `revision` | the extractor: repo, file, commit, tag | no |
-| derived | `ifeature`, `ifunction`, `ipriority`, `isafety`, `mstatus`, `assignedTo`, `unit` | the import | never |
+| derived | `ifeature`, `ifunction`, `ipriority`, `isafety`, `mstatus`, `parentOf`, `assignedTo`, `unit` | the import | never |
 
 - **function** is the role of a user need (PM, RM, ..., PSF); a requirement below inherits it.
 - **feature** is given on r2 and inherited by r5.
 - **priority** is `later` where a requirement is kept for later; empty otherwise.
-- **the uplink** names the parents: a child names what it is derived from. Its property name is
-  settled with the gel schema (`target_ids` until then).
+- **the links**: an object writes the ends of its own links in `target_ids` - in our files, the
+  parents it is derived from (the uplink). As in the gel schema, `source_ids` and `target_ids`
+  keep the original ends of the links without saying which is parent or child; the import makes
+  the link `parentOf` from them, a derived value.
 
 ### Example
 
