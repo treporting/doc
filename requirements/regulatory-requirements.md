@@ -30,7 +30,7 @@ release.
 | REG-07 | 21 CFR 11.10(b) | produce accurate and complete copies of records, readable by people and in electronic form | medical (FDA) | SYS-32 |
 | REG-08 | 21 CFR 11.10(c) | protect records so that they can be retrieved accurately throughout their retention period | medical (FDA) | SYS-42 |
 | REG-09 | 21 CFR 11.50, 11.70 | an electronic signature shows the name of the signer, the time and its meaning, and is bound to its record so that it cannot be moved to another | medical (FDA) | not realized: treporting signs nothing; an approval is made where the organization makes it, and can name the report it relied on (SYS-43) |
-| REG-10 | FDA, data integrity (ALCOA) | data are attributable, legible, contemporaneous, original and accurate - every figure can be followed back to whom and what it comes from | medical (FDA) | SYS-18, SYS-40, SYS-41, SYS-43 |
+| REG-10 | FDA, data integrity (ALCOA) | data are attributable, legible, contemporaneous, original and accurate - every figure can be followed back to whom and what it comes from | medical (FDA) | SYS-18, SYS-40, SYS-41, SYS-43, SYS-68, SYS-72 |
 
 ## Personal data and legal notice
 
@@ -39,6 +39,12 @@ release.
 | REG-11 | GDPR, Art. 5(1)(b), (e) | process personal data only for the purposes stated, and keep it no longer than they need | EU | SYS-44 |
 | REG-12 | BetrVG, §87(1) no. 6 | a technical means that can monitor the behaviour or performance of employees needs the consent of the works council | Germany | SYS-44 |
 | REG-13 | DDG, §5; GDPR, Art. 13 | a service on the internet names who runs it, and tells users what personal data it processes | Germany, EU | SYS-57 |
+
+## Safety classes
+
+| Id | Source | Asks | Applies to | Realized by |
+|---|---|---|---|---|
+| REG-19 | ISO 26262-9, clause 5; ISO 26262-3, -4, -6 | a safety requirement inherits the ASIL of the requirement it is derived from; it may get a lower one only by an ASIL decomposition into independent requirements | automotive | SYS-70 |
 
 ## Products on the market
 

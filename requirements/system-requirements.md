@@ -2,8 +2,9 @@
 
 What treporting has to do, seen as one box - viewer, reporter and storage together. Each
 requirement names the user needs (r1) and the regulatory requirements (`regulatory-requirements.md`)
-it comes from, and every need and every regulatory requirement that treporting realizes has at least one requirement. How
-the system does it is left to the architecture (r3).
+it comes from - or the decision of the architecture that made it possible -, and every need and
+every regulatory requirement that treporting realizes has at least one requirement. How the
+system does it is left to the architecture (r3).
 
 The ids are `SYS-nn`. The format of this file is preliminary until #6 defines it.
 
@@ -227,6 +228,21 @@ meant to be licensed must not be published under Apache-2.0 before, or it stays 
 | SYS-65 | be updatable to a release that fixes a vulnerability, without other changes coming with it | UN-OPS-11, REG-14, REG-15 |
 | SYS-66 | state the period over which a release gets security fixes | UN-OPS-11, REG-17 |
 | SYS-67 | name, in every release and on the demo, where a vulnerability is reported and how it is handled | UN-OPS-13, REG-15 |
+
+## Derived values
+
+| Id | The system shall | From |
+|---|---|---|
+| SYS-68 | keep every value as read from its source, and keep a value it derives beside it under a name of its own - `M` for mapped, `I` for inherited -, and say on every view which of the two it shows | UN-PSF-05, UN-SAF-03, REG-10 |
+| SYS-69 | make the derived values of a stored data set again on request when a rule changes, back in time, without fetching the data from the source systems again | architecture: original and derived values |
+
+## Plausibility
+
+| Id | The system shall | From |
+|---|---|---|
+| SYS-70 | analyse a data set, as a report, against rules of plausibility - a child with a lower safety class than its parent and no decomposition, an unclassified child under a classified parent, a passed test result without a test case, a cycle in the trace, a link into another baseline; the import reads the data as it is and is never stopped or changed by such a finding | UN-SAF-01, UN-SAF-03, UN-PSF-01, REG-19 |
+| SYS-71 | show every finding of SYS-70 with its rule and its objects, in a view of its own | UN-SAF-01, UN-PSF-03 |
+| SYS-72 | recognize a finding as evaluated when its object carries an evaluation in its source - an attribute or a link set by the configuration -, and show for every finding whether it is evaluated or open, with the evaluation | UN-ASR-07, UN-SAF-01, REG-10 |
 
 ## Open
 

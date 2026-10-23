@@ -82,6 +82,30 @@ flowchart LR
 | ARC-19 | items | extractor-SYSTEM → converter-edgedb | an item with its attributes as the system holds them, and its identity in the system |
 | ARC-20 | configuration | customer → converter-edgedb, storage | the mapping of attributes and of values, one file per system of a customer |
 
+## Rationale
+
+The principles every decision below follows.
+
+### Read only
+
+treporting only reads the data of its users. It never writes into a source system
+and never holds data that a user enters into treporting itself. What it writes are records of
+its own: the data set as read, the derived values beside it, the import records, the record of
+every report and the audit trail.
+
+**Example**: a finding of the plausibility analysis is evaluated where the customer works - an
+attribute in DOORS, a ticket in JIRA linked to the requirement -, and treporting reads that
+evaluation like any other data. The approval of a release is made where the organization makes
+it, and names the report it relied on.
+
+**Why**: we do not know how others work, so treporting fits into what is there instead of
+prescribing a way of working. What a user decides stays in the system where it is evidence
+without treporting. And treporting needs no input of its own - no rights to enter data, no
+audit trail of entries, no second place where the truth could be.
+
+**What it rules out**: evaluating findings or approving releases in treporting - it would leave
+the maxim, and bring a way of working, an audit trail of entries and a second truth with it.
+
 ## Decisions
 
 ### Independent count (SYS-23)
@@ -154,8 +178,8 @@ QM keeps `Safety` empty and gets `ISafety = 'ASIL B'`; its test case and test re
 Where the evidence is that every requirement was classified by a person, the report shows
 `Safety`, not `ISafety`; where the evidence is that nothing falls out of a filter, it shows
 `ISafety`. A change of a rule needs no new import. Only a derived value that is stored can be
-checked for plausibility - an original `Safety = 'QM'` under an `ISafety = 'ASIL D'` is a finding
-(#19).
+checked for plausibility - the reporter finds an original `Safety = 'QM'` under an
+`ISafety = 'ASIL D'` in its analysis (#19); the import reads the data as it is.
 
 **Rejected**:
 
@@ -279,6 +303,11 @@ V viewer, R reporter, S storage, C converter-edgedb, EC extractor-content, ES ex
 | SYS-65 | x | x | x | x | x | x |
 | SYS-66 | x | x | x | x | x | x |
 | SYS-67 | x | x | | | | |
+| SYS-68 | x | x | x | | | |
+| SYS-69 | | | x | | | |
+| SYS-70 | | x | | | | |
+| SYS-71 | x | x | | | | |
+| SYS-72 | x | x | | x | x | |
 
 ## Open
 
