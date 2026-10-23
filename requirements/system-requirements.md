@@ -1,8 +1,9 @@
 # System requirements (r2)
 
 What treporting has to do, seen as one box - viewer, reporter and storage together. Each
-requirement names the user needs (r1) it comes from - or, where no need stands above it, the
-constraint it follows - and every need has at least one requirement. How the system does it is left to the architecture (r3).
+requirement names the user needs (r1) and the regulatory requirements (`regulatory-requirements.md`)
+it comes from, and every need and every regulatory requirement has at least one requirement. How
+the system does it is left to the architecture (r3).
 
 The ids are `SYS-nn`. The format of this file is preliminary until #6 defines it.
 
@@ -55,7 +56,7 @@ needs it comes from - the roles of `user-needs.md` - and the feature of its sect
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-18 | show on every view and in every report which data set, which revision and which build of the system it answers from, and how many objects of each kind | UN-RM-03, UN-ASR-02, UN-ALL-03 |
+| SYS-18 | show on every view and in every report which data set, which revision and which build of the system it answers from, and how many objects of each kind | UN-RM-03, UN-ASR-02, UN-ALL-03, REG-10 |
 | SYS-19 | give the same report for the same data set, revision and parameters | UN-PSF-06 |
 | SYS-20 | hold several data sets apart - generated data and data read in, each baseline on its own - and answer each request from exactly one of them | UN-OPS-03 |
 | SYS-21 | answer from a data file when no database server can be reached | UN-OPS-01 |
@@ -85,11 +86,11 @@ is shown by level C only.
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-23 | count at every import, per kind of object, per type of link and per state, at four points - in the source by a query of its own, read, refused, and stored, counted from the storage afterwards - and name every difference | UN-PSF-01, UN-PSF-04 |
-| SYS-24 | build the same data set from the same source on every import | UN-PSF-06 |
-| SYS-25 | compare at every import a fingerprint of the fields that matter of each object in the source with the same object as stored, and name every object that differs | UN-PSF-01, UN-PSF-02 |
-| SYS-26 | mark a data set whose import showed a difference as incomplete, on every view and in every report that answers from it | UN-PSF-02, UN-PSF-04 |
-| SYS-27 | report, in every release, every fault built into a data set of known content - a missing object, a missing link, an unknown value, a spelling that differs | constraint (tool qualification: ISO 26262-8 clause 11, IEC 61508-3 7.4.4, DO-330) |
+| SYS-23 | count at every import, per kind of object, per type of link and per state, at four points - in the source by a query of its own, read, refused, and stored, counted from the storage afterwards - and name every difference | UN-PSF-01, UN-PSF-04, REG-01, REG-02, REG-03 |
+| SYS-24 | build the same data set from the same source on every import | UN-PSF-06, REG-01, REG-02, REG-03 |
+| SYS-25 | compare at every import a fingerprint of the fields that matter of each object in the source with the same object as stored, and name every object that differs | UN-PSF-01, UN-PSF-02, REG-01, REG-02, REG-03 |
+| SYS-26 | mark every data set as complete, incomplete when its import showed a difference, or unverified when its source could not be counted on a way of its own - on every view and in every report that answers from it | UN-PSF-02, UN-PSF-04, REG-01, REG-02, REG-03 |
+| SYS-27 | report, in every release, every fault built into a data set of known content - a missing object, a missing link, an unknown value, a spelling that differs | REG-01, REG-02, REG-03, REG-04 |
 
 ## Errors
 
@@ -104,7 +105,7 @@ is shown by level C only.
 | Id | The system shall | From |
 |---|---|---|
 | SYS-31 | export every table in a machine-readable format and every chart as a picture | UN-RM-04, UN-ASR-06 |
-| SYS-32 | export complete records with their history, readable by people and by machines | UN-ASR-06 |
+| SYS-32 | export complete records with their history, readable by people and by machines | UN-ASR-06, REG-07 |
 
 ## Usability
 
@@ -126,12 +127,12 @@ is shown by level C only.
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-39 | authenticate every user by an identity of their own, and grant access by role | UN-OPS-08 |
-| SYS-40 | record for every report who produced it, when, from which data set and revision, and with which parameters | UN-ASR-04 |
-| SYS-41 | record every import and change of data - who, when, what - and keep the state before it | UN-ASR-05 |
-| SYS-42 | keep the records and their audit trail for a set period, readable throughout | UN-OPS-09 |
-| SYS-43 | record an approval of a release with the approver, the time, its meaning and a fingerprint of what was approved, and never change an approval afterwards | UN-RM-05 |
-| SYS-44 | use the record of what users did only for the purposes set, delete it after the period set, and show it only to the roles allowed to see it | UN-ALL-04 |
+| SYS-39 | authenticate every user by an identity of their own, and grant access by role | UN-OPS-08, REG-06 |
+| SYS-40 | record for every report who produced it, when, from which data set and revision, and with which parameters | UN-ASR-04, REG-05, REG-10 |
+| SYS-41 | record every import and change of data - who, when, what - and keep the state before it; the record of an import holds the source and its revision, the time, who started it, the version of the converter, the counts at the four points of SYS-23, the objects refused with their reason, the result of the fingerprints of SYS-25 and the state of SYS-26 | UN-ASR-05, REG-05, REG-10 |
+| SYS-42 | keep the records and their audit trail for a set period, readable throughout | UN-OPS-09, REG-08 |
+| SYS-43 | record an approval of a release with the approver, the time, its meaning and a fingerprint of what was approved, and never change an approval afterwards | UN-RM-05, REG-09 |
+| SYS-44 | use the record of what users did only for the purposes set, delete it after the period set, and show it only to the roles allowed to see it | UN-ALL-04, REG-11, REG-12 |
 
 ## Maturity
 
@@ -196,7 +197,7 @@ The sizes of a data set:
 
 | Id | The system shall | From |
 |---|---|---|
-| SYS-57 | carry a legal notice and a privacy notice on every page reachable from the internet | constraint (German law) |
+| SYS-57 | carry a legal notice and a privacy notice on every page reachable from the internet | REG-13 |
 
 ## Open
 
