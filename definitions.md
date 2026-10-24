@@ -108,6 +108,63 @@ A release or a library is a span of time in which a process is used to do the wo
 the content of the product. *Release* is used for the product, *library* for a part of it, mostly
 software. A product mostly needs several releases, one after another, to be finished.
 
+## Function and feature
+
+Requirements are grouped by what is built, not by how it is built (see Component and unit), from
+the wider to the narrower.
+
+**Function** - a set of requirements that
+
+- are realized for one user - a role of the user needs -, or
+- serve one purpose - maintenance, commissioning, an external API -, or
+- are set by one stakeholder - safety requirements, for instance.
+
+**Feature** - a small set of requirements that together contribute to realizing the same
+capability.
+
+A function holds features.
+
+## Component and unit
+
+A software is broken down by how it is built, not by what it is for (see Architectural
+breakdown), from the wider to the narrower.
+
+**Component** - a group of modules within a subsystem that has one responsibility, such as the
+trace or the maturity of the reporter. A software requirement names the component it belongs to.
+
+**Unit** - a source file. It is not written down by hand: it is the file in which the code that
+realizes a requirement stands.
+
+A component holds modules, a module holds units.
+
+## Platform, launch and stream
+
+A requirement holds for some products only, and is planned for some deliveries only.
+
+**Platform** - linked to an architecture, and with it to its interfaces of hardware and
+software.
+
+**Launch** - a planning size: when which feature is to be available. It is no grouping like
+function or feature; it stands beside the baseline - the baseline points back to what was
+delivered, the launch forward to where a requirement is planned. On the side of the system a
+launch is a release, on the side of the software a library. A launch is written as its number
+and its type: `1_type1, 2_type1, 2_type2`.
+
+**Type** - a variance of the delivery.
+
+Platform and launch belong together: a requirement names its launches per platform. For example:
+
+```
+platform-1 = 1_type1, 2_type1, 2_type2
+platform-2 = 1_type1, 2_type1, 2_type2
+```
+
+**Stream** - the name of a variant the software runs in and that gives it certain properties.
+Where a software runs on a hardware, the stream can name that hardware - Intel xy, AMD xy; where
+it runs in a mode of operation, the stream can name that mode - on premises, off premises, SaaS,
+single user. The name of the platform does not tell it, and it can differ from subsystem to
+subsystem.
+
 ## Milestone
 
 A milestone is a point in time. A release is broken down into milestones to match internal or
@@ -121,7 +178,8 @@ milestones (n:1).
 
 Architecture is the breakdown of the product into small pieces, and the definition of how those
 pieces communicate. For software the entities are subsystem → 1:n → component → 1:n → module →
-1:n → unit → 1:n → function. The breakdown depends on the context, code-based or model-based, and
+1:n → unit → 1:n → code function or method - not to be confused with a function as a group
+of requirements. The breakdown depends on the context, code-based or model-based, and
 on knowledge of the domain. A work product can be related to one architectural entity. An
 architectural entity is realized by the content of items in a system.
 

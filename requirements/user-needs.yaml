@@ -7,7 +7,8 @@ requirements:
   object_text: Sees how far each feature has got, down all levels, in a release.
 - object_key: UN-PM-02
   function: PM
-  object_text: Narrows any view to the functions, features and priorities of the own scope.
+  object_text: Narrows any view to the functions, features, priorities, platforms and launches of the own
+    scope.
 - object_key: UN-PM-03
   function: PM
   object_text: Sees where the chain from requirement to test result breaks, to plan the work there.

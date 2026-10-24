@@ -40,8 +40,8 @@ requirements:
   target_ids: [UN-QA-03]
 - object_key: SYS-09
   feature: Filter
-  object_text: narrow every view by function, feature, priority and safety class, the unclassified included,
-    the same way in table and chart
+  object_text: narrow every view by function, feature, priority, safety class, platform and launch,
+    the unclassified included, the same way in table and chart, over the whole trace
   target_ids: [UN-PM-02, UN-SAF-02]
 - object_key: SYS-10
   feature: Filter
@@ -49,8 +49,9 @@ requirements:
   target_ids: [UN-PSF-03]
 - object_key: SYS-11
   feature: Filter
-  object_text: carry function, feature, priority and safety class down the trace; where a requirement
-    has several parents, it carries the highest safety class among them
+  object_text: carry function, feature, priority, safety class, platform and launch down the trace; where
+    a requirement has several parents, it carries the highest safety class among them and the union
+    of their platforms and launches
   target_ids: [UN-SAF-03, UN-PM-02]
 - object_key: SYS-12
   feature: Hazards

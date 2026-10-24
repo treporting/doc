@@ -70,7 +70,7 @@ stands; then they become a part of it, and a CI check in storage-edgedb compares
 | component | a group of packages with one responsibility | `trace`, `maturity` | the field `component` of an SR |
 | module | a Go package or JS module | `trace/gaps` | the code |
 | unit | a source file | `trace/gaps/mark.go` | the annotation, never by hand |
-| function | a function or method | `markGaps()` | the place of the annotation |
+| code function or method | not a function as a group of requirements | `markGaps()` | the place of the annotation |
 
 ## Ids
 
