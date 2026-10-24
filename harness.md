@@ -87,23 +87,25 @@ to the process does not count into the maturity of the product.
 | PROC-02 | Every change has a ticket in the org project treporting and a branch `<ticket number>-<slug>`. |
 | PROC-03 | A change reaches `main` only through a pull request; `main` is protected. |
 | PROC-04 | A pull request passes the full gate before it is merged to `main`. |
-| PROC-05 | A requirement is merged before any code names it in `@implements`. |
+| PROC-05 | Every change of code realizes or verifies a merged requirement and names it in `@implements` or `@verifies`. Code is everything that is built or run - also schemas, configurations and container files. |
 | PROC-06 | A baseline is a signed tag: in this repo (treporting) it is a release, in any other repo a library. |
 | PROC-07 | Every release and every library writes its data into the reference edgedb. |
 | PROC-08 | Every release has an SBOM, and the licences of its components are checked against Apache-2.0 (REG-15, REG-18). |
 | PROC-09 | A reported vulnerability is assessed and fixed without delay; one that is actively exploited is notified within 24 hours (REG-15, REG-16). |
 | PROC-10 | Every release gets security fixes over the support period it states (REG-17). |
 | PROC-11 | A document names no ticket; what is open, it states as open. The ticket names the document, not the other way round. |
+| PROC-12 | A level is merged before the level below names it: user needs and regulatory requirements, system requirements, architecture, software requirements, code. |
 
 ## Loop for every code change
 
-1. compile
-2. run linter
-3. run unit-testing in local
-4. update documentation (swagger, *.md)
-5. gate checks - the quick gate before a commit, the full gate before a merge to main (PROC-04)
-6. commit, pull request, merge (PROC-03)
-7. provide feedback
+1. the requirement the change realizes is merged (PROC-05)
+2. compile
+3. run linter
+4. run unit-testing in local
+5. update documentation (swagger, *.md)
+6. gate checks - the quick gate before a commit, the full gate before a merge to main (PROC-04)
+7. commit, pull request, merge (PROC-03)
+8. provide feedback
 
 ## Loop for every release or library
 
