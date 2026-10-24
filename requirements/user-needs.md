@@ -56,6 +56,6 @@ Whoever sets treporting up for the systems of a customer.
 
 What every role relies on when it decides on what treporting shows. treporting controls
 nothing, but a gap it hides can lead to a wrong release. The hazards they control are in
-`safety/hazard-and-risk-analysis.md`; the analysis of the tool's failures (#12) traces to these needs.
+`safety/hazard-and-risk-analysis.md`; the analysis of the tool's failures in the tool qualification traces to these needs.
 
 `UN-PSF-01` to `UN-PSF-06`: in [user-needs.yaml](user-needs.yaml).

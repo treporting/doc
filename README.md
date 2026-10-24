@@ -34,7 +34,7 @@ HAZ, THR (h1)  →  HAZC, THRC (h2)  →  UN (r1) ─┐
 THRC of a threat to our work  →  PROC, a rule of the harness
 ```
 
-The threats (`THR-nn`) are being worked out in #22.
+*Open:* the threats (`THR-nn`) and their controls (`THRC-nn`) are not written down yet.
 
 Every need and every regulatory requirement that treporting realizes has at least one system
 requirement; every system requirement names where it comes from and is allocated to the

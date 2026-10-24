@@ -15,9 +15,9 @@ treporting is a pure software project and is developed following the process of 
   - **safety analysis**: the hazard and risk analysis by the method of IEC 61508-1, 7.4, in
     [safety/hazard-and-risk-analysis.md](safety/hazard-and-risk-analysis.md) (HAZ);
   - **security**: IEC 62443-4-1 for the secure development, IEC 62443-3-2 for the analysis of the
-    threats (THR, #22);
-  - **assurance**: ISO/IEC/IEEE 15026 is proposed for the case why the tool can be relied on
-    (#12).
+    threats (THR);
+  - **assurance**: ISO/IEC/IEEE 15026 is proposed for the case why the tool can be relied on, in
+    the tool qualification.
 - **project risks** are handled by the risk management process of 12207, 6.3.4.
 - REG-01 to REG-04 are requirements on the tool from the domains of its users, not our process.
 
@@ -53,7 +53,7 @@ A software test names SR in `@verifies`, a system test SYS.
 
 ### Maturity of our own data
 
-The data of treporting itself (the reference edgedb, #9) is measured by this chain:
+The data of treporting itself (the reference edgedb) is measured by this chain:
 
 | Order | Object | ISO/IEC/IEEE 12207, 29119 | Group |
 |---|---|---|---|
@@ -91,6 +91,7 @@ to the process does not count into the maturity of the product.
 | PROC-08 | Every release has an SBOM, and the licences of its components are checked against Apache-2.0 (REG-15, REG-18). |
 | PROC-09 | A reported vulnerability is assessed and fixed without delay; one that is actively exploited is notified within 24 hours (REG-15, REG-16). |
 | PROC-10 | Every release gets security fixes over the support period it states (REG-17). |
+| PROC-11 | A document names no ticket; what is open, it states as open. The ticket names the document, not the other way round. |
 
 ## Loop for every code change
 

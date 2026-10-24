@@ -6,10 +6,10 @@ information that leads to a wrong decision - a product released with a gap that 
 not show.
 
 The hazards are on level h1, with the ids `HAZ-nn`; the threats of security share that level
-with the ids `THR-nn` (#22). Each hazard is controlled by a measure on level h2, with the ids
+with the ids `THR-nn`. Each hazard is controlled by a measure on level h2, with the ids
 `HAZC-nn` - the prefix of the hazard and C for control -, and each measure asks for the user needs (r1) that realize it - mostly those of the
 section Safety of the product (PSF) in `requirements/user-needs.md`. The tool
-qualification package (#12) builds its analysis of tool errors on this file.
+qualification package builds its analysis of tool errors on this file.
 
 ## Hazards
 

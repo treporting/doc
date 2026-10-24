@@ -2,7 +2,7 @@
 
 How requirements, architecture, risks, annotations and tests are written down, so that people
 can review them in a pull request and a program can read them - the CI check and treporting
-itself (#9). Decided in #6.
+itself, in the reference edgedb.
 
 ## Requirements: YAML for the data, Markdown for the explanations
 
@@ -11,7 +11,7 @@ maturity, introductions - stays in Markdown beside it and refers to the YAML.
 
 | Level | Data | Explanation | Repo |
 |---|---|---|---|
-| h1, h2 | `safety/hazards.yaml` (HAZ, HAZC); threats (THR, THRC) by #22 | `safety/hazard-and-risk-analysis.md` | treporting |
+| h1, h2 | `safety/hazards.yaml` (HAZ, HAZC); threats (THR, THRC), still to come | `safety/hazard-and-risk-analysis.md` | treporting |
 | n1 | `requirements/regulatory-requirements.yaml` (REG) | `requirements/regulatory-requirements.md` | treporting |
 | r1 | `requirements/user-needs.yaml` (UN) | `requirements/user-needs.md` | treporting |
 | r2 | `requirements/system-requirements.yaml` (SYS) | `requirements/system-requirements.md` | treporting |
@@ -23,7 +23,7 @@ A readable Markdown view of the YAML is generated on request only.
 ### Fields are the properties of the gel schema
 
 The fields of the YAML carry the names of the properties of the gel schema of the model
-(treporting/storage-edgedb#3), so that our own data needs no configuration to be read. The YAML
+in storage-edgedb, so that our own data needs no configuration to be read. The YAML
 holds only what the author writes:
 
 | Kind of field | Examples | Where it comes from | In the YAML |
@@ -83,8 +83,20 @@ stands; then they become a part of it, and a CI check in storage-edgedb compares
 | `SYS-nn` | system requirements | r2 |
 | `ARC-nn` | subsystems, interfaces | r3 |
 | `ARC-Rnn`, `ARC-Dnn` | rationale and decisions of the architecture; a requirement a decision made possible names it as uplink | r3 |
-| `SR-<code>-nn` | software requirements: VIE, REP, STO, CON, EXC, and EX with the system for an extractor (EXGIT, EXCB, ...) | r5 |
+| `SR-<repo>-nn` | software requirements, named after the repo of their subsystem - `SR-reporter-edgedb-02`; unique however many reporters, viewers or extractors there are | r5 |
 | `PROC-nn` | rules of our work | - |
+
+### Software requirements
+
+- a software requirement states **one behaviour** of its subsystem that a test can verify - "the
+  trace marks a missing link as gap"
+- it names no route and no view: where a behaviour shows - a route, its contract - is set by the
+  architecture, at most
+- it names as a rule **one** system requirement as uplink; several only where the behaviour
+  serves each of them
+- every subsystem repo is an element of its own in the architecture, so that the CI can check
+  the allocation (r4): ARC-06 *extractor-SYSTEM* describes the kind; extractor-git, a second
+  reporter or a second viewer each get an element of their own when their repo is made
 
 ## Annotations
 
@@ -92,18 +104,18 @@ The same in Go and JavaScript, in the comment right above the function, method, 
 test, with no blank line between:
 
 ```go
-// @implements SR-REP-02, SR-REP-03
+// @implements SR-reporter-edgedb-02, SR-reporter-edgedb-03
 func markGaps(trace *Trace) { ... }
 
-// @verifies SR-REP-02
+// @verifies SR-reporter-edgedb-02
 func TestMarkGapsNeverCovered(t *testing.T) { ... }
 ```
 
 ```js
-/** @implements SR-VIE-05 */
+/** @implements SR-viewer-edgedb-05 */
 export function StatusBand(props) { ... }
 
-// @verifies SR-VIE-05
+// @verifies SR-viewer-edgedb-05
 it('shows the hidden filters', () => { ... })
 ```
 
