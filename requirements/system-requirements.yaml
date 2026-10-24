@@ -40,8 +40,8 @@ requirements:
   target_ids: [UN-QA-03]
 - object_key: SYS-09
   feature: Filter
-  object_text: narrow every view by function, feature, priority, safety class, platform and launch,
-    the unclassified included, the same way in table and chart, over the whole trace
+  object_text: narrow every view by function, feature, priority, safety class, platform, launch and
+    stream, the unclassified included, the same way in table and chart, over the whole trace
   target_ids: [UN-PM-02, UN-SAF-02]
 - object_key: SYS-10
   feature: Filter

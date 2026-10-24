@@ -106,6 +106,12 @@ elements:
   object_text: configuration
   between: customer → converter-edgedb, storage
   contract: the mapping of attributes and of values, one file per system of a customer
+- object_key: ARC-21
+  kind: model
+  object_text: the information model - the common language of converter, storage and reporter; the
+    common contract of ARC-12, ARC-13 and ARC-18
+  contract: architecture/attributes.md
+  allocated: [SYS-09, SYS-11, SYS-13, SYS-14, SYS-15, SYS-16, SYS-17, SYS-18, SYS-20, SYS-28, SYS-36, SYS-41, SYS-43, SYS-45, SYS-49, SYS-68, SYS-69, SYS-70, SYS-72]
 decisions:
 - object_key: ARC-R01
   object_text: Read only

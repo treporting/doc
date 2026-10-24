@@ -23,7 +23,7 @@ A readable Markdown view of the YAML is generated on request only.
 ### Fields are the properties of the gel schema
 
 The model of the prototype (cm-mono) is the reference: what is not changed on purpose is taken over
-as it is; every deviation is recorded in [attributes.md](attributes.md), with its reason.
+as it is; every deviation is recorded in [attributes.md](architecture/attributes.md), with its reason.
 
 The fields of the YAML carry the names of the properties of the gel schema of the model
 in storage-edgedb, so that our own data needs no configuration to be read. The YAML
