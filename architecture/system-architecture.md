@@ -12,7 +12,9 @@ There are two kinds of system:
   customized by each customer. converter-edgedb maps those attributes to the model, by a
   configuration file of the customer.
 
-Every system has an extractor of its own that lists and fetches what it holds. Both ways end in
+Every system has an extractor of its own that lists and fetches what it holds. Converter,
+storage and reporter speak one language, the information model (ARC-21), whose contract is
+[attributes.md](attributes.md). Both ways end in
 the import of the storage, which works the same for every system. Each subsystem is a repo of
 its own. r4 is the allocation in this file: the system requirements allocated to a subsystem are
 its requirements, derived directly from r2, with no ids of their own.

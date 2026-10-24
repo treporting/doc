@@ -1,10 +1,13 @@
 # Attributes of the model
 
+This is the contract of the information model, ARC-21: the common language of converter, storage
+and reporter over the interfaces ARC-12, ARC-13 and ARC-18.
+
 Every attribute of the model, type by type: what it means, where it comes from, whether it has an
 intermediate (`I`) or a mapped (`M`) value, how it is carried down the trace, and which system
 requirements use it. The names are those of the gel schema of the model and of the YAML
-([formats.md](formats.md)). The terms are those of
-[definitions.md](definitions.md).
+([formats.md](../formats.md)). The terms are those of
+[definitions.md](../definitions.md).
 
 The prototype is the reference: what is not changed on purpose is taken over as it is. Every
 entry says how it stands to the prototype - `same`, `renamed`, `changed` or `new` - and why where
@@ -122,7 +125,7 @@ Overview per type, as the prototype sets it; the terms are those of definitions.
 |---|---|
 | Meaning | how a requirement is verified, after ISO/IEC/IEEE 29148 |
 | Value | `inspection`, `analysis`, `demonstration` or `test` |
-| Where | on the requirements of the software design (r7) |
+| Where | on every requirement, on every level |
 | Comes from | author |
 | Variants | `mverification_method` mapped - the converter maps the values of a customer to those of 29148: *review* to `inspection`, *design* to `analysis`. A customer may keep it in an attribute called coverage, which is a different thing here: the converter has to take care |
 | Prototype | renamed - from `coverage`, which had two meanings; values after ISO/IEC/IEEE 29148 |
@@ -173,6 +176,7 @@ how tests are carried out, a script being an automated one.
 |---|---|
 | Meaning | the variant the test is run in - a hardware, a mode of operation (see definitions.md) |
 | Comes from | author |
+| Used by | SYS-09, filter |
 | Prototype | same |
 
 ### mfeature, mfunction, msafety
@@ -410,3 +414,11 @@ the generator is taken over.
 | `status` of a test result | writes `mstatus` only, the original stays empty | the original as a source would write it - `pass`, `fail`, `skip` - and `mstatus` mapped from it |
 | `priority`, `status`, `platform_launch` of a hazard or measure | writes the originals from the mapped values (`settleHazard`) | the original as a source writes it, or empty |
 | `status` of a clause | takes `mstatus` from the first requirement that addresses it, and writes the original from it | its own original, `mstatus` mapped from it |
+
+## Open
+
+- **the record of an import** (SYS-41): no type for it yet
+- **the record of a report** (SYS-43), with its identity and the fingerprint of its data: no type
+  for it yet
+- **the evaluation of a finding** (SYS-72): no attribute yet; the configuration names it
+- **attributes without a system requirement**: `verification_method` realizes none yet
