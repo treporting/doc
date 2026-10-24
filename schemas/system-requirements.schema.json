@@ -20,7 +20,10 @@
         "required": [
           "object_key",
           "object_text",
-          "feature"
+          "feature",
+          "status",
+          "verification_method",
+          "platform_launch"
         ],
         "additionalProperties": false,
         "properties": {
@@ -54,6 +57,26 @@
           },
           "target": {
             "type": "string"
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "review",
+              "approved",
+              "obsolete"
+            ]
+          },
+          "verification_method": {
+            "enum": [
+              "inspection",
+              "analysis",
+              "demonstration",
+              "test"
+            ]
+          },
+          "platform_launch": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }

@@ -153,6 +153,14 @@ meant to be licensed must not be published under Apache-2.0 before, or it stays 
 
 `SYS-70` to `SYS-72`: in [system-requirements.yaml](system-requirements.yaml).
 
+## Verification
+
+`SYS-73` to `SYS-76`: in [system-requirements.yaml](system-requirements.yaml).
+
+Every requirement has a status - `draft`, `review`, `approved`, `obsolete` - and a verification
+method after ISO/IEC/IEEE 29148. The review of a requirement checks the requirement itself
+against criteria; the verification method says how its realization is shown to meet it.
+
 ## Open
 
 - **Figures**: the measured and the target figures in the tables of [Performance](#performance).

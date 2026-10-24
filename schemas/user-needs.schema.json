@@ -20,7 +20,10 @@
         "required": [
           "object_key",
           "object_text",
-          "function"
+          "function",
+          "status",
+          "verification_method",
+          "platform_launch"
         ],
         "additionalProperties": false,
         "properties": {
@@ -40,6 +43,26 @@
             "enum": [
               "later"
             ]
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "review",
+              "approved",
+              "obsolete"
+            ]
+          },
+          "verification_method": {
+            "enum": [
+              "inspection",
+              "analysis",
+              "demonstration",
+              "test"
+            ]
+          },
+          "platform_launch": {
+            "type": "string",
+            "minLength": 1
           }
         }
       }

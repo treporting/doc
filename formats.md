@@ -39,6 +39,12 @@ holds only what the author writes:
   parent into `mfunction` where its own is empty.
 - **feature** is given on r2; r5 takes it from its parent into `mfeature`.
 - **priority** is `later` where a requirement is kept for later; empty otherwise.
+- **status** of every requirement: `draft`, `review`, `approved`, `obsolete`; a requirement starts
+  as `draft` and is approved only after its review (PROC-13).
+- **verification_method** of every requirement, after ISO/IEC/IEEE 29148: `inspection`,
+  `analysis`, `demonstration`, `test`.
+- **platform_launch** of every user need and system requirement: `treporting = 2_selfhosted,
+  1_demo`, or narrower where a requirement holds for one of them only.
 - **the links**: an object writes the ends of its own links in `target_ids` - in our files, the
   parents it is derived from (the uplink). As in the gel schema, `source_ids` and `target_ids`
   keep the original ends of the links without saying which is parent or child; the import makes
@@ -64,6 +70,21 @@ requirements:
 
 One JSON Schema per kind of file, in [schemas/](schemas/). They are drafts until the gel schema
 stands; then they become a part of it, and a CI check in storage-edgedb compares both.
+
+## Reviews
+
+A review checks a requirement against the criteria of its level. Criteria and result are kept
+like a test case and its result, in `reviews/`:
+
+```
+reviews/
+  criteria-r2.yaml               the criteria of a level, after ISO/IEC/IEEE 29148 (RC)
+  2026-10-25-sys-trace.yaml      a review: who, when, the revision of every requirement
+                                 reviewed, per requirement and criterion passed or failed (RR)
+```
+
+A review counts for the revision it reviewed only (SYS-75). See the loop for every review in
+[harness.md](harness.md).
 
 ## Breakdown
 
