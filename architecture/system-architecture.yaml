@@ -26,8 +26,8 @@ elements:
   repo: storage-edgedb
   object_text: 'the model, the data sets and the `Source` interface over them - a database branch, generated
     data or a data file; the generator of data of known content; the import, the same for every system:
-    counts what was stored, fingerprints it, derives the mapped (`M`) values by the configuration of the
-    customer and the inherited (`I`) values, sets the state and keeps the import record; the audit trail'
+    counts what was stored, fingerprints it, derives the mapped (`M`) values - by the configuration of the
+    customer, or from the parent where the original is empty - and the intermediate status (`I`), sets the state and keeps the import record; the audit trail'
   allocated: [SYS-11, SYS-13, SYS-14, SYS-16, SYS-18, SYS-19, SYS-20, SYS-21, SYS-22, SYS-23, SYS-24,
     SYS-25, SYS-26, SYS-27, SYS-28, SYS-32, SYS-35, SYS-36, SYS-38, SYS-40, SYS-41, SYS-42, SYS-43, SYS-44,
     SYS-49, SYS-51, SYS-52, SYS-53, SYS-54, SYS-55, SYS-60, SYS-62, SYS-63, SYS-64, SYS-65, SYS-66, SYS-68,

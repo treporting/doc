@@ -22,6 +22,9 @@ A readable Markdown view of the YAML is generated on request only.
 
 ### Fields are the properties of the gel schema
 
+The model of the prototype (cm-mono) is the reference: what is not changed on purpose is taken over
+as it is; every deviation is recorded in [attributes.md](attributes.md), with its reason.
+
 The fields of the YAML carry the names of the properties of the gel schema of the model
 in storage-edgedb, so that our own data needs no configuration to be read. The YAML
 holds only what the author writes:
@@ -30,10 +33,11 @@ holds only what the author writes:
 |---|---|---|---|
 | content | `object_key`, `object_text`, `level`, `function`, `feature`, `component`, `priority`, `safety`, `status`, the uplink | the author | yes |
 | context | `organization`, `project`, `baseline`, `library`, `system`, `module_id`, `revision` | the extractor: repo, file, commit, tag | no |
-| derived | `ifeature`, `ifunction`, `ipriority`, `isafety`, `mstatus`, `parentOf`, `assignedTo`, `unit` | the import | never |
+| derived | `istatus`, `mstatus`, `mpriority`, `msafety`, `mplatform_launch`, `mfeature`, `mfunction`, `parentOf`, `assignedTo`, `unit` | the import | never |
 
-- **function** is the role of a user need (PM, RM, ..., PSF); a requirement below inherits it.
-- **feature** is given on r2 and inherited by r5.
+- **function** is the role of a user need (PM, RM, ..., PSF); a requirement below takes it from its
+  parent into `mfunction` where its own is empty.
+- **feature** is given on r2; r5 takes it from its parent into `mfeature`.
 - **priority** is `later` where a requirement is kept for later; empty otherwise.
 - **the links**: an object writes the ends of its own links in `target_ids` - in our files, the
   parents it is derived from (the uplink). As in the gel schema, `source_ids` and `target_ids`
@@ -70,9 +74,14 @@ stands; then they become a part of it, and a CI check in storage-edgedb compares
 | component | a group of packages with one responsibility | `trace`, `maturity` | the field `component` of an SR |
 | module | a Go package or JS module | `trace/gaps` | the code |
 | unit | a source file | `trace/gaps/mark.go` | the annotation, never by hand |
-| function | a function or method | `markGaps()` | the place of the annotation |
+| code function or method | not a function as a group of requirements | `markGaps()` | the place of the annotation |
 
 ## Ids
+
+An id is unique within its document only: its prefix is the `module_prefix` of the document, its
+number the `object_id` within it. The document is unique within its context - the project, and
+for a subsystem the repo. A reference names the id; the context is known where it is written - an
+annotation names software requirements of its own repo only.
 
 | Ids | What | Level |
 |---|---|---|
@@ -83,7 +92,8 @@ stands; then they become a part of it, and a CI check in storage-edgedb compares
 | `SYS-nn` | system requirements | r2 |
 | `ARC-nn` | subsystems, interfaces | r3 |
 | `ARC-Rnn`, `ARC-Dnn` | rationale and decisions of the architecture; a requirement a decision made possible names it as uplink | r3 |
-| `SR-<repo>-nn` | software requirements, named after the repo of their subsystem - `SR-reporter-edgedb-02`; unique however many reporters, viewers or extractors there are | r5 |
+| `SR-nn` | software requirements of a subsystem - unique together with their context, the repo of the subsystem (LProject) and the document | r5 |
+| *open* | software architecture (r6) and software design (r7) of a subsystem; their prefixes are still to be set | r6, r7 |
 | `PROC-nn` | rules of our work | - |
 
 ### Software requirements
@@ -104,18 +114,18 @@ The same in Go and JavaScript, in the comment right above the function, method, 
 test, with no blank line between:
 
 ```go
-// @implements SR-reporter-edgedb-02, SR-reporter-edgedb-03
+// @implements SR-02, SR-03
 func markGaps(trace *Trace) { ... }
 
-// @verifies SR-reporter-edgedb-02
+// @verifies SR-02
 func TestMarkGapsNeverCovered(t *testing.T) { ... }
 ```
 
 ```js
-/** @implements SR-viewer-edgedb-05 */
+/** @implements SR-05 */
 export function StatusBand(props) { ... }
 
-// @verifies SR-viewer-edgedb-05
+// @verifies SR-05
 it('shows the hidden filters', () => { ... })
 ```
 

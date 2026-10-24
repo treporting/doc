@@ -151,22 +151,26 @@ errors of an import are detected (REG-01 to REG-03).
 
 **Decision**: the storage always keeps the original as read from the source. A value derived at
 the import is never the original and is kept beside it under a name of its own, with a
-prefix: `M` for a value mapped - translated or adapted to the model -, `I` for a value inherited
-down the trace. When a rule changes, the derived values can be made again on the stored data set,
+prefix: `M` for a value mapped - unified, translated or adapted to the model; where the original
+is empty, the mapped value of the parent -, `I` for an intermediate form, only for the status, where
+the original has to be transformed before it can be mapped. When a rule changes, the derived values can be made again on the stored data set,
 back in time, so that the data need not be fetched from the source systems again - a requirement
 that follows from this architecture, not from a need (SYS-69).
 
 **Example**: the source says `Status = 'im Review'`; the import keeps it and adds
-`MStatus = 'review'`, as the configuration of the customer maps it. A software requirement without a safety class under parents of ASIL B and
-QM keeps `Safety` empty and gets `ISafety = 'ASIL B'`; its test case and test result get
-`ISafety = 'ASIL B'` as well.
+`MStatus = 'review'`, as the configuration of the customer maps it. A status kept per platform -
+`Status = "status_platform-1 = in Review_Vendor` / `status_platform-2 = open"` - is first transformed
+into `IStatus = "platform-1 = in Review` / `platform-2 = open"`; `MStatus` is then `review` when the
+filter selects platform-1, made for the filter set where it is not stored. A software requirement
+without a safety class under parents of ASIL B and QM keeps `Safety` empty and gets
+`MSafety = 'ASIL B'`; its test case and test result get `MSafety = 'ASIL B'` as well.
 
 **Why**: what is stored can be compared with the source (SYS-25) and stays original (REG-10).
 Where the evidence is that every requirement was classified by a person, the report shows
-`Safety`, not `ISafety`; where the evidence is that nothing falls out of a filter, it shows
-`ISafety`. A change of a rule needs no new import. Only a derived value that is stored can be
-checked for plausibility - the reporter finds an original `Safety = 'QM'` under an
-`ISafety = 'ASIL D'` in its analysis (SYS-70); the import reads the data as it is.
+`Safety`, not `MSafety`; where the evidence is that nothing falls out of a filter, it shows
+`MSafety`. A change of a rule needs no new import. Only a derived value that is stored can be
+checked for plausibility - the reporter finds an original `Safety = 'QM'` under a parent
+with `MSafety = 'ASIL D'` in its analysis (SYS-70); the import reads the data as it is.
 
 **Rejected**:
 

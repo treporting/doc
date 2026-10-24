@@ -33,9 +33,11 @@ treporting is a pure software project and is developed following the process of 
 | r3 | system architecture (ARC) | 6.4.4 architecture definition |
 | r4 | the system requirements allocated to the subsystems - derived directly from r2 by the allocation in the system architecture, with no ids of their own | 6.4.4 architecture definition |
 | r5 | software requirements (SR) per subsystem | 6.4.3 software requirements definition |
+| r6 | software architecture of a subsystem: its components | 6.4.4 architecture definition |
+| r7 | software design of a subsystem: its modules and units; it names how a requirement is verified (`verification_method`) | 6.4.5 design definition |
 
 In the level view of the reporter, RISK+SYS+SW, h1 and h2 are RISK, r1 to r3 with the system
-tests SYS, r5 with the design, the code and the software tests SW. n1 is read by the compliance
+tests SYS, r5 to r7 with the code and the software tests SW. n1 is read by the compliance
 view, not by a trace.
 
 ### Test levels
@@ -63,8 +65,8 @@ The data of treporting itself (the reference edgedb) is measured by this chain:
 | 4 | software requirement | 6.4.3 | RG-SW-R |
 | 5 | software architecture - the components | 6.4.4 | RG-SW-R |
 | 6 | software design - the modules | 6.4.5 | RG-SW-R |
-| 7 | source code, one step per coverage level | 6.4.7 | RG-SC |
-| 8 | object code, one step per coverage level | 6.4.7 | RG-OC |
+| 7 | source code, one step per code coverage level | 6.4.7 | RG-SC |
+| 8 | object code, one step per code coverage level | 6.4.7 | RG-OC |
 | 9 | test case, test result of the unit test (MT) | 29119 | RG-SW-TC, RG-SW-TR |
 | 10 | test case, test result of the integration test (SwIT) | 29119 | RG-SW-TC, RG-SW-TR |
 | 11 | test case, test result of the subsystem test (SwVal) | 29119 | RG-SW-TC, RG-SW-TR |
@@ -72,7 +74,7 @@ The data of treporting itself (the reference edgedb) is measured by this chain:
 | 13 | test case, test result of the system test (SysQT) | 29119 | RG-SYS-TC, RG-SYS-TR |
 | 14 | test case, test result of the acceptance test (Val) | 29119 | RG-SYS-TC, RG-SYS-TR |
 
-With one coverage level each, the chain has 20 steps.
+With one code coverage level each, the chain has 20 steps.
 
 ## Rules
 

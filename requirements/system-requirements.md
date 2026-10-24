@@ -84,9 +84,9 @@ is shown by level C only.
 
 The maturity of a requirement is how far down the longest chain of the V-model it has got: the
 share of the steps of the chain it has reached. The number of steps is not fixed: each process
-reference model has its own chain, and source code and object code have a step for each coverage
-level coded, such as sc1 function and sc2 statement coverage, or oc1 object and oc2 assembler
-coverage. The table shows the chain of ASPICE; with one coverage level each it has 20 steps, so
+reference model has its own chain, and source code and object code have a step for each code
+coverage level coded, such as sc1 function and sc2 statement coverage, or oc1 object and oc2 assembler
+coverage. The table shows the chain of ASPICE; with one code coverage level each it has 20 steps, so
 each step is 5 %. A step whose level is empty is skipped and the others count more,
 so that 100 % can always be reached.
 
@@ -98,8 +98,8 @@ so that 100 % can always be reached.
 | 4 | software requirement | SWE.1 | RG-SW-R |
 | 5 | software architecture | SWE.2 | RG-SW-R |
 | 6 | detailed design | SWE.3 | RG-SW-R |
-| 7 | source code, one step per coverage level (sc1, sc2, ...) | SWE.3 | RG-SC |
-| 8 | object code, one step per coverage level (oc1, oc2, ...) | build | RG-OC |
+| 7 | source code, one step per code coverage level (sc1, sc2, ...) | SWE.3 | RG-SC |
+| 8 | object code, one step per code coverage level (oc1, oc2, ...) | build | RG-OC |
 | 9 | test case, test result of the unit test | SWE.4 | RG-SW-TC, RG-SW-TR |
 | 10 | test case, test result of the software integration test | SWE.5 | RG-SW-TC, RG-SW-TR |
 | 11 | test case, test result of the software qualification test | SWE.6 | RG-SW-TC, RG-SW-TR |

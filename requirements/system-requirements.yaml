@@ -40,8 +40,8 @@ requirements:
   target_ids: [UN-QA-03]
 - object_key: SYS-09
   feature: Filter
-  object_text: narrow every view by function, feature, priority and safety class, the unclassified included,
-    the same way in table and chart
+  object_text: narrow every view by function, feature, priority, safety class, platform and launch,
+    the unclassified included, the same way in table and chart, over the whole trace
   target_ids: [UN-PM-02, UN-SAF-02]
 - object_key: SYS-10
   feature: Filter
@@ -49,8 +49,9 @@ requirements:
   target_ids: [UN-PSF-03]
 - object_key: SYS-11
   feature: Filter
-  object_text: carry function, feature, priority and safety class down the trace; where a requirement
-    has several parents, it carries the highest safety class among them
+  object_text: carry function, feature, priority, safety class, platform and launch down the trace; where
+    a requirement has several parents, it carries the highest safety class among them and the union
+    of their platforms and launches
   target_ids: [UN-SAF-03, UN-PM-02]
 - object_key: SYS-12
   feature: Hazards
@@ -226,7 +227,7 @@ requirements:
   target_ids: [UN-PSF-01]
 - object_key: SYS-49
   feature: Maturity
-  object_text: take the longest chain from the process reference model in use and the coverage levels
+  object_text: take the longest chain from the process reference model in use and the code coverage levels
     coded for source code and object code - ASPICE with one level each, 20 steps, when none is chosen
     - and leave out every step whose level holds no object in the release; every report states the chain
     it used and the steps it left out
@@ -329,7 +330,8 @@ requirements:
 - object_key: SYS-68
   feature: Derived values
   object_text: keep every value as read from its source, and keep a value it derives beside it under a
-    name of its own - `M` for mapped, `I` for inherited -, and say on every view which of the two it shows
+    name of its own - `M` for mapped, also from the parent where the original is empty; `I` for an
+    intermediate form of the status -, and say on every view which of the two it shows
   target_ids: [UN-PSF-05, UN-SAF-03, REG-10]
 - object_key: SYS-69
   feature: Derived values
