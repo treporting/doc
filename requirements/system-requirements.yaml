@@ -227,7 +227,7 @@ requirements:
   target_ids: [UN-PSF-01]
 - object_key: SYS-49
   feature: Maturity
-  object_text: take the longest chain from the process reference model in use and the coverage levels
+  object_text: take the longest chain from the process reference model in use and the code coverage levels
     coded for source code and object code - ASPICE with one level each, 20 steps, when none is chosen
     - and leave out every step whose level holds no object in the release; every report states the chain
     it used and the steps it left out

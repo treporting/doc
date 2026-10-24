@@ -74,6 +74,11 @@ stands; then they become a part of it, and a CI check in storage-edgedb compares
 
 ## Ids
 
+An id is unique within its document only: its prefix is the `module_prefix` of the document, its
+number the `object_id` within it. The document is unique within its context - the project, and
+for a subsystem the repo. A reference names the id; the context is known where it is written - an
+annotation names software requirements of its own repo only.
+
 | Ids | What | Level |
 |---|---|---|
 | `HAZ-nn`, `THR-nn` | hazards, threats | h1 |
@@ -83,7 +88,8 @@ stands; then they become a part of it, and a CI check in storage-edgedb compares
 | `SYS-nn` | system requirements | r2 |
 | `ARC-nn` | subsystems, interfaces | r3 |
 | `ARC-Rnn`, `ARC-Dnn` | rationale and decisions of the architecture; a requirement a decision made possible names it as uplink | r3 |
-| `SR-<repo>-nn` | software requirements, named after the repo of their subsystem - `SR-reporter-edgedb-02`; unique however many reporters, viewers or extractors there are | r5 |
+| `SR-nn` | software requirements of a subsystem - unique together with their context, the repo of the subsystem (LProject) and the document | r5 |
+| *open* | software architecture (r6) and software design (r7) of a subsystem; their prefixes are still to be set | r6, r7 |
 | `PROC-nn` | rules of our work | - |
 
 ### Software requirements
@@ -104,18 +110,18 @@ The same in Go and JavaScript, in the comment right above the function, method, 
 test, with no blank line between:
 
 ```go
-// @implements SR-reporter-edgedb-02, SR-reporter-edgedb-03
+// @implements SR-02, SR-03
 func markGaps(trace *Trace) { ... }
 
-// @verifies SR-reporter-edgedb-02
+// @verifies SR-02
 func TestMarkGapsNeverCovered(t *testing.T) { ... }
 ```
 
 ```js
-/** @implements SR-viewer-edgedb-05 */
+/** @implements SR-05 */
 export function StatusBand(props) { ... }
 
-// @verifies SR-viewer-edgedb-05
+// @verifies SR-05
 it('shows the hidden filters', () => { ... })
 ```
 
