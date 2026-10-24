@@ -33,6 +33,12 @@ puts it.
 An item is an entity that can be identified uniquely within a system. Its name depends on the
 system: DOORS has modules, SVN and GIT have files, JIRA and CODEBEAMER have tickets or issues.
 
+## Document
+
+A document is an item that holds objects - requirements, test cases, hazards - in a system: a
+module in DOORS, a file in GIT. Its **category** says what kind of document it is: a requirement
+document, a test specification, a test procedure, a test report.
+
 ## Content
 
 An item is the envelope of its content: requirements described in text, tables or graphs, an
@@ -164,6 +170,37 @@ Where a software runs on a hardware, the stream can name that hardware - Intel x
 it runs in a mode of operation, the stream can name that mode - on premises, off premises, SaaS,
 single user. The name of the platform does not tell it, and it can differ from subsystem to
 subsystem.
+
+## Tests
+
+After ISO/IEC/IEEE 29119:
+
+**Test case** - the unit a verdict belongs to. Its results hang on it.
+
+**Test procedure** - how test cases are carried out. A script is an automated test procedure; it
+holds its test cases.
+
+**Test specification** - a document that holds test cases, where their procedures are a document
+of their own - the case where a customer writes the test cases and a contractor delivers the
+procedures.
+
+**Test report** - a document that holds the results of a run.
+
+**Test result** - one run of a test case: its verdict, in a stream.
+
+## Hazard and measure
+
+**Hazard** - a source of harm the product can cause, found by the hazard analysis. It carries the
+safety class, and from there the class is carried down.
+
+**Measure** - what controls a hazard: a safety goal, a risk control measure. It asks for the
+requirements that realize it.
+
+A threat and its control follow the same shape on the side of security.
+
+## Normative
+
+A clause of a standard or a law that a project chooses to meet. A requirement addresses it.
 
 ## Milestone
 

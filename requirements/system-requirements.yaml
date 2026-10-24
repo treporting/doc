@@ -330,7 +330,8 @@ requirements:
 - object_key: SYS-68
   feature: Derived values
   object_text: keep every value as read from its source, and keep a value it derives beside it under a
-    name of its own - `M` for mapped, `I` for inherited -, and say on every view which of the two it shows
+    name of its own - `M` for mapped, also from the parent where the original is empty; `I` for an
+    intermediate form of the status -, and say on every view which of the two it shows
   target_ids: [UN-PSF-05, UN-SAF-03, REG-10]
 - object_key: SYS-69
   feature: Derived values

@@ -22,6 +22,9 @@ A readable Markdown view of the YAML is generated on request only.
 
 ### Fields are the properties of the gel schema
 
+The model of the prototype (cm-mono) is the reference: what is not changed on purpose is taken over
+as it is; every deviation is recorded in [attributes.md](attributes.md), with its reason.
+
 The fields of the YAML carry the names of the properties of the gel schema of the model
 in storage-edgedb, so that our own data needs no configuration to be read. The YAML
 holds only what the author writes:
@@ -30,10 +33,11 @@ holds only what the author writes:
 |---|---|---|---|
 | content | `object_key`, `object_text`, `level`, `function`, `feature`, `component`, `priority`, `safety`, `status`, the uplink | the author | yes |
 | context | `organization`, `project`, `baseline`, `library`, `system`, `module_id`, `revision` | the extractor: repo, file, commit, tag | no |
-| derived | `ifeature`, `ifunction`, `ipriority`, `isafety`, `mstatus`, `parentOf`, `assignedTo`, `unit` | the import | never |
+| derived | `istatus`, `mstatus`, `mpriority`, `msafety`, `mplatform_launch`, `mfeature`, `mfunction`, `parentOf`, `assignedTo`, `unit` | the import | never |
 
-- **function** is the role of a user need (PM, RM, ..., PSF); a requirement below inherits it.
-- **feature** is given on r2 and inherited by r5.
+- **function** is the role of a user need (PM, RM, ..., PSF); a requirement below takes it from its
+  parent into `mfunction` where its own is empty.
+- **feature** is given on r2; r5 takes it from its parent into `mfeature`.
 - **priority** is `later` where a requirement is kept for later; empty otherwise.
 - **the links**: an object writes the ends of its own links in `target_ids` - in our files, the
   parents it is derived from (the uplink). As in the gel schema, `source_ids` and `target_ids`
