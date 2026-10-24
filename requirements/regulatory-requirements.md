@@ -34,7 +34,7 @@ release.
 
 ## Products on the market
 
-treporting is open source with licensed features, offered commercially (#24). Whether and from
+treporting is open source, with the possibility of licensed features, and offered commercially. Whether and from
 when the Cyber Resilience Act applies to it is to be confirmed by legal advice.
 
 `REG-14` to `REG-18`: in [regulatory-requirements.yaml](regulatory-requirements.yaml).

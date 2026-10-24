@@ -53,7 +53,7 @@ is counted after the import, not by the converter. Four levels together give the
 | A. reconciliation at every import | count at four points - in the source by a query of its own (the object count of a DOORS module, the total of a codebeamer query, a `git grep` for `@implements`), read, refused with a reason, stored; source = read + refused, read = stored; per kind of object, per type of link, per state | missing objects, missing links, states counted wrong |
 | B. content check | a fingerprint of the fields that matter, per object, on the side of the source and on the side of the storage | attributes swapped, links to the wrong object, an unknown value turned into zero or empty |
 | C. known-answer test per release | data sets of known content, with faults built in - missing objects, missing links, unknown values, spellings that differ; every fault has to be reported | that the checks find what they are for - the evidence for TD1 |
-| D. reference edgedb (#9) | treporting reads its own repos; the expected counts come independently from git | real data instead of generated |
+| D. reference edgedb | treporting reads its own repos; the expected counts come independently from git | real data instead of generated |
 
 Equal counts do not prove the content right - that is level B. That the checks find anything at all
 is shown by level C only.
@@ -112,7 +112,7 @@ so that 100 % can always be reached.
 ## Performance
 
 The non-functional requirements. Their figures are measured first on the prototype with generated
-data, then set as targets (#16); until then they read *open*. A requirement of another feature that
+data, then set as targets; until then they read *open*. A requirement of another feature that
 depends on a figure refers to the requirement here.
 
 The sizes of a data set:
@@ -131,8 +131,8 @@ The sizes of a data set:
 
 ## Licensing
 
-Priority **later**: treporting has no licensed feature yet - everything is under Apache-2.0
-(#24). These requirements keep the way open for features developed for customers. A feature
+Priority **later**: treporting has no licensed feature yet - everything is under Apache-2.0.
+These requirements keep the way open for features developed for customers. A feature
 meant to be licensed must not be published under Apache-2.0 before, or it stays free for good.
 
 `SYS-58` to `SYS-59`: in [system-requirements.yaml](system-requirements.yaml).
@@ -155,4 +155,4 @@ meant to be licensed must not be published under Apache-2.0 before, or it stays 
 
 ## Open
 
-- **Figures**: the measured and the target figures in the tables of [Performance](#performance) (#16).
+- **Figures**: the measured and the target figures in the tables of [Performance](#performance).

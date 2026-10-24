@@ -85,7 +85,7 @@ elements:
   kind: interface
   object_text: information
   between: extractor-content → storage
-  contract: 'the information extracted, per kind, over ARC-13; for annotations the format of #6'
+  contract: 'the information extracted, per kind, over ARC-13; for annotations the format of formats.md'
 - object_key: ARC-17
   kind: interface
   object_text: identity
@@ -118,4 +118,4 @@ decisions:
 - object_key: ARC-D04
   object_text: Configuration instead of code for the customer (SYS-22)
 - object_key: ARC-D05
-  object_text: 'Identity (SYS-39) - provisional, confirmed or changed by #22'
+  object_text: 'Identity (SYS-39) - provisional, until the threat analysis confirms or changes it'
