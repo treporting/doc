@@ -126,6 +126,7 @@ Overview per type, as the prototype sets it; the terms are those of definitions.
 | Meaning | how a requirement is verified, after ISO/IEC/IEEE 29148 |
 | Value | `inspection`, `analysis`, `demonstration` or `test` |
 | Where | on every requirement, on every level |
+| Used by | SYS-73, SYS-76 |
 | Comes from | author |
 | Variants | `mverification_method` mapped - the converter maps the values of a customer to those of 29148: *review* to `inspection`, *design* to `analysis`. A customer may keep it in an attribute called coverage, which is a different thing here: the converter has to take care |
 | Prototype | renamed - from `coverage`, which had two meanings; values after ISO/IEC/IEEE 29148 |
@@ -365,6 +366,19 @@ A clause of a standard or a law (n1). The module is the standard, the object the
 | Meaning | `addressedBy` from a clause to the requirements of any level that address it |
 | Prototype | same |
 
+## ReviewCriteria, ReviewResult
+
+The review of a requirement against criteria, kept like a test case and its result.
+
+| | |
+|---|---|
+| ReviewCriteria (RC) | the criteria of a level - after ISO/IEC/IEEE 29148: necessary, unambiguous, complete, consistent, verifiable, feasible, traceable |
+| ReviewResult (RR) | one review: who, when, the revision of the requirement reviewed, per criterion passed or failed, the verdict |
+| Links | `reviewedBy` from a requirement to the criteria of its level; `resultOf` from the criteria to the results |
+| Note | apart from the types of the tests, though of the same shape: easier to understand, and tests and reviews keep tables and indexes of their own |
+| Used by | SYS-74, SYS-75 |
+| Prototype | new - the prototype reads review results from spreadsheets and shows them, with no type of its own |
+
 ## Project, System, Baseline, Artifact, Component
 
 The types of the structure: projects, the systems they keep their work in, baselines, documents and
@@ -394,6 +408,7 @@ The other types follow.
 | `module_prefix` | changed: on every object in a document | an id is unique only within its document, and links name it |
 | `created_at`, `created_by`, `modified_at`, `modified_by` | new, on every type | REG-10 |
 | `prefix` of a document | renamed to `module_prefix` | the same thing as on its objects |
+| ReviewCriteria, ReviewResult, the link `reviewedBy` | new | the review of every requirement before it is approved |
 | `feature`, `function`, `safety` of a test case | renamed to `mfeature`, `mfunction`, `msafety`, with no original | they are always derived from the requirement; the name says so |
 | `feature`, `function`, `safety` of a test result | renamed to `mfeature`, `mfunction`, `msafety`, with no original | always derived from the test case |
 | `priority` of a test result | changed: no original, `mpriority` only | a run cannot be prioritized of its own |
@@ -421,4 +436,3 @@ the generator is taken over.
 - **the record of a report** (SYS-43), with its identity and the fingerprint of its data: no type
   for it yet
 - **the evaluation of a finding** (SYS-72): no attribute yet; the configuration names it
-- **attributes without a system requirement**: `verification_method` realizes none yet

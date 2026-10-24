@@ -87,7 +87,7 @@ to the process does not count into the maturity of the product.
 | PROC-02 | Every change has a ticket in the org project treporting and a branch `<ticket number>-<slug>`. |
 | PROC-03 | A change reaches `main` only through a pull request; `main` is protected. |
 | PROC-04 | A pull request passes the full gate before it is merged to `main`. |
-| PROC-05 | Every change of code realizes or verifies a merged requirement and names it in `@implements` or `@verifies`. Code is everything that is built or run - also schemas, configurations and container files. |
+| PROC-05 | Every change of code realizes or verifies an approved requirement and names it in `@implements` or `@verifies`. Code is everything that is built or run - also schemas, configurations and container files. |
 | PROC-06 | A baseline is a signed tag: in this repo (treporting) it is a release, in any other repo a library. |
 | PROC-07 | Every release and every library writes its data into the reference edgedb. |
 | PROC-08 | Every release has an SBOM, and the licences of its components are checked against Apache-2.0 (REG-15, REG-18). |
@@ -95,10 +95,13 @@ to the process does not count into the maturity of the product.
 | PROC-10 | Every release gets security fixes over the support period it states (REG-17). |
 | PROC-11 | A document names no ticket; what is open, it states as open. The ticket names the document, not the other way round. |
 | PROC-12 | A level is merged before the level below names it: user needs and regulatory requirements, system requirements, architecture, software requirements, code. |
+| PROC-13 | A requirement is approved only when it passed its review against the criteria of its level, and every requirement it names as uplink is approved. |
+| PROC-14 | A change of the text of an approved requirement sets it back to `draft`. |
+| PROC-15 | The reviewer of a requirement is not its author. |
 
 ## Loop for every code change
 
-1. the requirement the change realizes is merged (PROC-05)
+1. the requirement the change realizes is approved (PROC-05)
 2. compile
 3. run linter
 4. run unit-testing in local
@@ -106,6 +109,17 @@ to the process does not count into the maturity of the product.
 6. gate checks - the quick gate before a commit, the full gate before a merge to main (PROC-04)
 7. commit, pull request, merge (PROC-03)
 8. provide feedback
+
+## Loop for every review
+
+1. set the requirements to be reviewed to `review`, by a pull request
+2. the reviewer - not the author (PROC-15) - checks them against the criteria of their level
+3. write the result into a file of its own in `reviews/`: who, when, the revision of every
+   requirement reviewed, per requirement and criterion passed or failed, and the verdict - one
+   result may cover many requirements
+4. pull request for the result - it checks the form of the evidence, not the requirements
+5. pull request that sets the passed requirements to `approved` (PROC-13); the failed ones go
+   back to `draft`
 
 ## Loop for every release or library
 

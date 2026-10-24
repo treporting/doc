@@ -20,7 +20,7 @@ of [formats.md](../formats.md); each section is a role, the field `function` of 
 
 ## Quality Assurance - QA
 
-`UN-QA-01` to `UN-QA-04`: in [user-needs.yaml](user-needs.yaml).
+`UN-QA-01` to `UN-QA-06`: in [user-needs.yaml](user-needs.yaml).
 
 ## Safety - SAF
 

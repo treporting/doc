@@ -21,7 +21,9 @@
           "object_key",
           "object_text",
           "source",
-          "applies_to"
+          "applies_to",
+          "status",
+          "verification_method"
         ],
         "additionalProperties": false,
         "properties": {
@@ -48,6 +50,22 @@
           "category": {
             "type": "string",
             "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "review",
+              "approved",
+              "obsolete"
+            ]
+          },
+          "verification_method": {
+            "enum": [
+              "inspection",
+              "analysis",
+              "demonstration",
+              "test"
+            ]
           }
         }
       }

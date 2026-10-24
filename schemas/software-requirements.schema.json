@@ -21,7 +21,9 @@
           "object_key",
           "object_text",
           "component",
-          "target_ids"
+          "target_ids",
+          "status",
+          "verification_method"
         ],
         "additionalProperties": false,
         "properties": {
@@ -48,6 +50,22 @@
           "priority": {
             "enum": [
               "later"
+            ]
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "review",
+              "approved",
+              "obsolete"
+            ]
+          },
+          "verification_method": {
+            "enum": [
+              "inspection",
+              "analysis",
+              "demonstration",
+              "test"
             ]
           }
         }
