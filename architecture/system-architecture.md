@@ -100,7 +100,7 @@ the maxim, and bring a way of working, an audit trail of entries and a second tr
 **Decision**: the source is counted by a query of its own (ARC-14), in the extractor of the system
 but in code apart from the reader, and the stored count is taken from the storage after the import. A reader never
 reports what it read as the count of the source. Besides, a verifier of its own, apart from all
-subsystems, checks the data of treporting itself (the reference edgedb, #9) and is run on request,
+subsystems, checks the data of treporting itself (the reference edgedb) and is run on request,
 for instance by an assessor; it is not delivered with the product.
 
 **Example**: a CODEBEAMER tracker holds 1 200 requirements, read in pages of 500. A fault in the
@@ -154,7 +154,7 @@ the import is never the original and is kept beside it under a name of its own, 
 prefix: `M` for a value mapped - translated or adapted to the model -, `I` for a value inherited
 down the trace. When a rule changes, the derived values can be made again on the stored data set,
 back in time, so that the data need not be fetched from the source systems again - a requirement
-that follows from this architecture, not from a need (#19).
+that follows from this architecture, not from a need (SYS-69).
 
 **Example**: the source says `Status = 'im Review'`; the import keeps it and adds
 `MStatus = 'review'`, as the configuration of the customer maps it. A software requirement without a safety class under parents of ASIL B and
@@ -166,7 +166,7 @@ Where the evidence is that every requirement was classified by a person, the rep
 `Safety`, not `ISafety`; where the evidence is that nothing falls out of a filter, it shows
 `ISafety`. A change of a rule needs no new import. Only a derived value that is stored can be
 checked for plausibility - the reporter finds an original `Safety = 'QM'` under an
-`ISafety = 'ASIL D'` in its analysis (#19); the import reads the data as it is.
+`ISafety = 'ASIL D'` in its analysis (SYS-70); the import reads the data as it is.
 
 **Rejected**:
 
@@ -195,7 +195,7 @@ configuration stays with the customer; the mechanism stays public and is tested 
 **Rejected**: a converter in code per system - the proprietary formats would be in code, and the
 same mechanics would be written once per system.
 
-### ARC-D05 Identity (SYS-39) - provisional, confirmed or changed by #22
+### ARC-D05 Identity (SYS-39) - provisional, until the threat analysis confirms or changes it
 
 **Decision**: treporting keeps no users and no passwords of its own. It takes the identity from
 what the organization already has: preferably from a proxy in front of it that authenticates the
@@ -213,7 +213,7 @@ instead of bringing a second management. A proxy keeps that entirely outside tre
 **Rejected**: a user management of its own in treporting - a second place to lock an account,
 and the duty of keeping passwords.
 
-**To be settled by #22**: with a proxy, the reporter must be reachable only through it, or the
+**Open**, to be settled by the threat analysis: with a proxy, the reporter must be reachable only through it, or the
 handed-on identity can be forged; and how a single user works locally without a proxy and without
 an identity provider (UN-OPS-01), with reports marked as made without login.
 
@@ -232,4 +232,4 @@ The allocation of every system requirement to the subsystems is the field `alloc
 - **Repos**: reporter-annotations becomes the package annotations of extractor-content; the repos
   of extractor-content and of the extractors per system are not created yet.
 - **Generator**: the data of known content for SYS-27 is made by the generator in storage; the
-  faults built into it are listed by #12.
+  faults built into it are still to be listed.

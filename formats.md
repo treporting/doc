@@ -2,7 +2,7 @@
 
 How requirements, architecture, risks, annotations and tests are written down, so that people
 can review them in a pull request and a program can read them - the CI check and treporting
-itself (#9). Decided in #6.
+itself, in the reference edgedb.
 
 ## Requirements: YAML for the data, Markdown for the explanations
 
@@ -11,7 +11,7 @@ maturity, introductions - stays in Markdown beside it and refers to the YAML.
 
 | Level | Data | Explanation | Repo |
 |---|---|---|---|
-| h1, h2 | `safety/hazards.yaml` (HAZ, HAZC); threats (THR, THRC) by #22 | `safety/hazard-and-risk-analysis.md` | treporting |
+| h1, h2 | `safety/hazards.yaml` (HAZ, HAZC); threats (THR, THRC), still to come | `safety/hazard-and-risk-analysis.md` | treporting |
 | n1 | `requirements/regulatory-requirements.yaml` (REG) | `requirements/regulatory-requirements.md` | treporting |
 | r1 | `requirements/user-needs.yaml` (UN) | `requirements/user-needs.md` | treporting |
 | r2 | `requirements/system-requirements.yaml` (SYS) | `requirements/system-requirements.md` | treporting |
@@ -23,7 +23,7 @@ A readable Markdown view of the YAML is generated on request only.
 ### Fields are the properties of the gel schema
 
 The fields of the YAML carry the names of the properties of the gel schema of the model
-(treporting/storage-edgedb#3), so that our own data needs no configuration to be read. The YAML
+in storage-edgedb, so that our own data needs no configuration to be read. The YAML
 holds only what the author writes:
 
 | Kind of field | Examples | Where it comes from | In the YAML |
